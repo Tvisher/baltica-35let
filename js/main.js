@@ -17,6 +17,8 @@ periodCardsItems.forEach(sliderBlock => {
     const periodCards = new Swiper(sliderElement, {
         slidesPerView: 'auto',
         spaceBetween: 24,
+        centeredSlides: 1,
+        centeredSlidesBounds: 1,
         freeMode: {
             enabled: true,
             sticky: true,
