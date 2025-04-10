@@ -513,7 +513,7 @@ body {
   transition: transform 0.2s ease-in-out;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     .period-card__top {
       &::before {
         opacity: 0;

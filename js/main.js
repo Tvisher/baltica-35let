@@ -37,9 +37,7 @@ periodCardsItems.forEach(sliderBlock => {
                     swiper.el.classList.remove('slider-start')
                 }
             },
-            // activeIndexChange(swiper) {
-            //     console.log(swiper.activeIndex);
-            // }
+
         }
     });
 
