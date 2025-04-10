@@ -35,10 +35,9 @@ periodCardsItems.forEach(sliderBlock => {
                     swiper.el.classList.remove('slider-start')
                 }
             },
-            activeIndexChange(swiper) {
-                console.log(swiper.activeIndex);
-
-            }
+            // activeIndexChange(swiper) {
+            //     console.log(swiper.activeIndex);
+            // }
         }
     });
 
@@ -48,9 +47,9 @@ periodCardsItems.forEach(sliderBlock => {
             const isFirst = ind == 0;
             htmlCustomPagination += `<span data-slide="${el.dataset.year}" class="custom-cards-pagination__item ${isFirst ? 'current' : ''}">${el.dataset.year}</span>`;
         });
-        return htmlCustomPagination;
+        paginationParent.innerHTML = htmlCustomPagination;
     };
-    paginationParent.innerHTML = renderCustomPagination();
+    renderCustomPagination();
 
     paginationParent.addEventListener('click', (e) => {
         const yearPagination = e.target.closest('.custom-cards-pagination__item');
@@ -63,7 +62,22 @@ periodCardsItems.forEach(sliderBlock => {
         const currentSlide = periodCards.slides.findIndex(slide => slide.dataset.year === currentYear);
         periodCards.slideTo(currentSlide, 800);
 
-    })
+    });
+
+    periodCards.slides.forEach(slide =>
+        slide.addEventListener('mouseover', (e) => {
+            const slideItem = e.target.closest('.period-card');
+            if (!slideItem) return;
+            const slideYear = slideItem.dataset.year;
+            const currentPaginationItem = paginationParent.querySelector(`[data-slide="${slideYear}"]`);
+            const prevActivPag = paginationParent.querySelector('.custom-cards-pagination__item.current');
+
+            prevActivPag && prevActivPag.classList.remove('current');
+            currentPaginationItem && currentPaginationItem.classList.add('current');
+        })
+    )
+
+
 })
 
 
