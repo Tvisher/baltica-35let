@@ -113,12 +113,16 @@ const activitiesList = new Swiper('.activities__list', {
 
 const albumSlider = new Swiper('.album-slider', {
     slidesPerView: 'auto',
+    speed: 1200,
     spaceBetween: 140,
     freeMode: {
         enabled: true,
         sticky: true,
     },
-
+    keyboard: {
+        enabled: true,
+        onlyInViewport: false,
+    },
     on: {
         activeIndexChange(swiper) {
             const currentSlide = swiper.slides[swiper.activeIndex];
@@ -137,7 +141,6 @@ const albumSlider = new Swiper('.album-slider', {
 
 const timelineSlider = new Swiper('.album-timeline', {
     slidesPerView: 'auto',
-    spaceBetween: 0,
     freeMode: {
         enabled: true,
         // sticky: true,
@@ -145,7 +148,7 @@ const timelineSlider = new Swiper('.album-timeline', {
     centeredSlides: 1,
     centeredSlidesBounds: 1,
     on: {
-        activeIndexChange(swiper) {
+        transitionEnd(swiper) {
             if (swiper.isEnd) {
                 swiper.el.classList.add('slider-end')
             } else {
