@@ -468,6 +468,23 @@ body {
   line-height: 120%;
 }
 
+@keyframes fromOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.period-cards-item {
+  display: none;
+  &.active {
+    display: block;
+    animation: fromOpacity 0.8s ease-in-out forwards;
+  }
+}
+
 .period-cards {
   padding: 50px 0;
   padding-top: 24px;
@@ -824,9 +841,8 @@ body {
   background: #f3f3f3;
 }
 
-.album-timeline {
-  margin-bottom: 35px;
-  padding-bottom: 35px;
+.album-timeline__wrapper {
+  position: relative;
   &:before {
     position: absolute;
     left: 0;
@@ -838,9 +854,48 @@ body {
   }
 }
 
+.album-timeline {
+  width: 100%;
+  margin-bottom: 35px;
+  padding-bottom: 35px;
+  position: relative;
+  &::before {
+    z-index: 2;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 300px;
+    background: linear-gradient(90deg, rgba(243, 243, 243, 0) 0%, #f3f3f3 100%);
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+  }
+  &::after {
+    z-index: 2;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 300px;
+    transform: scaleX(-1);
+    background: linear-gradient(90deg, rgba(243, 243, 243, 0) 0%, #f3f3f3 100%);
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+  }
+  &.slider-end::before {
+    opacity: 0;
+  }
+  &.slider-start::after {
+    opacity: 1;
+  }
+}
+
 .timeline-slide {
   cursor: pointer;
-  padding: 0 17px;
+  padding: 0 16px;
   color: #8897ae;
   text-align: center;
   font-size: 22px;
@@ -893,7 +948,7 @@ body {
 }
 
 .album-slide {
-  height: 580px;
+  height: clamp(1px, 34.52vw, 580px);
   width: 83.3%;
   background-color: #fff;
   border-radius: 24px;
