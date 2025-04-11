@@ -774,10 +774,9 @@ body {
     border-radius: 16px;
   }
   &.blocked {
-    pointer-events: none;
-
     .activities-item__wrapper {
       color: #c7c7c7;
+      pointer-events: none;
     }
     .activities-item__btn {
       opacity: 0.4;
@@ -813,6 +812,180 @@ body {
   &:hover {
     &::before {
       opacity: 1;
+    }
+  }
+}
+
+.album-section {
+  overflow: hidden;
+  max-width: 100vw;
+  padding-top: 100px;
+  padding-bottom: 90px;
+  background: #f3f3f3;
+}
+
+.album-timeline {
+  margin-bottom: 35px;
+  padding-bottom: 35px;
+  &:before {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    height: 2px;
+    background-color: #d5d5d5;
+    content: "";
+  }
+}
+
+.timeline-slide {
+  cursor: pointer;
+  padding: 0 17px;
+  color: #8897ae;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 120%;
+  width: fit-content;
+  position: relative;
+  transition: color 0.4s ease-in-out;
+
+  &::after {
+    content: "";
+    left: calc(50% - 1px);
+    position: absolute;
+    bottom: -25px;
+    height: 15px;
+    width: 2px;
+    background-color: #d5d5d5;
+    z-index: 1;
+  }
+  &:before {
+    z-index: 2;
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%) scale(0.5);
+    height: 22px;
+    width: 10px;
+    bottom: -30px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='10' height='22' viewBox='0 0 10 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5 0L0 5.36842V16.6316C0 16.6316 0 22 5 22C10 22 10 16.6316 10 16.6316V5.36842L5 0Z' fill='url(%23paint0_linear_210_27940)'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_210_27940' x1='5' y1='-3.7998e-07' x2='5' y2='34' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23CC985D'/%3e%3cstop offset='0.2' stop-color='%23EED2A3'/%3e%3cstop offset='0.4' stop-color='%23FDE1B9'/%3e%3cstop offset='0.6' stop-color='%23C68E54'/%3e%3cstop offset='0.8' stop-color='%23DAA155'/%3e%3cstop offset='1' stop-color='%23BE8239'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out,
+      transform 0.4s ease-in-out;
+  }
+  &.active {
+    color: #002d74;
+    &:before {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.album-slider {
+  overflow: visible;
+}
+
+.album-slide {
+  height: 580px;
+  width: 83.3%;
+  background-color: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  &::before {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: linear-gradient(
+      0deg,
+      rgba(226, 226, 226, 0.8) 0%,
+      rgba(226, 226, 226, 0.8) 100%
+    );
+  }
+  &.swiper-slide-active {
+    &::before {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+.album-slide__wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.album-slide__image {
+  width: 68.6%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.album-slide__content {
+  padding: 32px;
+  background-image: url(../img/album-bg.png);
+  background-size: cover;
+  background-position: center right;
+  display: flex;
+  flex-direction: column;
+}
+
+.album-slide__year {
+  color: #002d74;
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 120%;
+  margin-bottom: 20px;
+}
+
+.album-slide__text {
+  color: #002d74;
+  font-family: "Verdana";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 155.556%;
+}
+
+.album-slide__btn {
+  cursor: pointer;
+  margin-top: auto;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #cc985d 0%,
+    #eed2a3 20%,
+    #e3c59a 40%,
+    #c68e54 60%,
+    #daa155 80%,
+    #be8239 100%
+  );
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 120%;
+  gap: 10px;
+  svg {
+    transition: transform 0.3s ease-in-out;
+  }
+  &:hover {
+    svg {
+      transform: translateX(10px) scale(1.2);
     }
   }
 }

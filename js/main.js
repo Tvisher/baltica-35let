@@ -71,7 +71,6 @@ periodCardsItems.forEach(sliderBlock => {
             const slideYear = slideItem.dataset.year;
             const currentPaginationItem = paginationParent.querySelector(`[data-slide="${slideYear}"]`);
             const prevActivPag = paginationParent.querySelector('.custom-cards-pagination__item.current');
-
             prevActivPag && prevActivPag.classList.remove('current');
             currentPaginationItem && currentPaginationItem.classList.add('current');
         })
@@ -94,6 +93,56 @@ const activitiesList = new Swiper('.activities__list', {
 
 
 
+const albumSlider = new Swiper('.album-slider', {
+    slidesPerView: 'auto',
+    spaceBetween: 140,
+    freeMode: {
+        enabled: true,
+        sticky: true,
+    },
+
+    on: {
+        activeIndexChange(swiper) {
+            const currentSlide = swiper.slides[swiper.activeIndex];
+            const activeYear = currentSlide.dataset.year;
+            const timelineNeededSlideIndex = timelineSlider.slides.findIndex(slide => slide.dataset.year == activeYear);
+            const timelineNeededSlide = timelineSlider.slides.find(slide => slide.dataset.year == activeYear);
+            timelineSlider.slides.forEach(slide => slide.classList.remove('active'))
+            timelineNeededSlide.classList.add('active');
+            timelineSlider.slideTo(timelineNeededSlideIndex, 200)
+
+        }
+    }
+});
+
+
+const timelineSlider = new Swiper('.album-timeline', {
+    slidesPerView: 'auto',
+    spaceBetween: 0,
+    freeMode: {
+        enabled: true,
+        // sticky: true,
+    },
+    on: {
+        click(swiper, event) {
+            const target = event.target;
+            const currentSlide = target.closest('.timeline-slide');
+            if (currentSlide) {
+                swiper.slides.forEach(el => el.classList.remove('active'))
+                currentSlide.classList.add('active');
+                const currentYear = currentSlide.dataset.year;
+                const albumSliderCurrentSlideIndex = albumSlider.slides.findIndex(el => el.dataset.year == currentYear);
+
+                albumSlider.slideTo(albumSliderCurrentSlideIndex, 900)
+            }
+        }
+    }
+});
+
+
+
+
+
 document.addEventListener('click', (e) => {
     const target = e.target;
     const poriodItem = target.closest('.poriod-item');
@@ -103,3 +152,6 @@ document.addEventListener('click', (e) => {
         poriodItem.classList.add('active');
     }
 })
+
+
+
