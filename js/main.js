@@ -103,6 +103,10 @@ periodSliders[0].init()
 const activitiesList = new Swiper('.activities__list', {
     slidesPerView: 'auto',
     spaceBetween: 24,
+    pagination: {
+        el: '.swiper-pagination',
+        type: "bullets",
+    },
     freeMode: {
         enabled: true,
         sticky: true,
@@ -113,8 +117,9 @@ const activitiesList = new Swiper('.activities__list', {
 
 const albumSlider = new Swiper('.album-slider', {
     slidesPerView: 'auto',
+
     speed: 1200,
-    spaceBetween: 140,
+    // spaceBetween: 140,
     freeMode: {
         enabled: true,
         sticky: true,
@@ -122,6 +127,12 @@ const albumSlider = new Swiper('.album-slider', {
     keyboard: {
         enabled: true,
         onlyInViewport: false,
+    },
+    pagination: {
+        // dynamicBullets: true,
+        // dynamicMainBullets: 10,
+        el: '.swiper-pagination',
+        type: "bullets",
     },
     on: {
         activeIndexChange(swiper) {
@@ -181,6 +192,55 @@ const timelineSlider = new Swiper('.album-timeline', {
 
 
 
+
+
+const albumSliderMain = new Swiper(".album-modal__slider-main", {
+    allowTouchMove: false,
+    spaceBetween: 100,
+    speed: 800,
+
+    navigation: {
+        nextEl: ".slider-main-button-next",
+        prevEl: ".slider-main-button-prev",
+    },
+});
+
+
+const albumItems = document.querySelectorAll('.album-item');
+albumItems.forEach(slideItem => {
+    const mainSlider = slideItem.querySelector('.group-main');
+    const mainThumbs = slideItem.querySelector('.group-thumbs');
+    const progressBlock = slideItem.querySelector(".group-thumbs__progress")
+    const albumThumbsSlider = new Swiper(mainThumbs, {
+        spaceBetween: 10,
+        slidesPerView: "auto",
+        freeMode: true,
+        watchSlidesProgress: true,
+        mousewheel: {
+            enable: true,
+        },
+        pagination: {
+            el: progressBlock,
+            type: "progressbar",
+        },
+    });
+    const albumInnerSlider = new Swiper(mainSlider, {
+        spaceBetween: 10,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        navigation: {
+            nextEl: ".group-main-next",
+            prevEl: ".group-main-prev",
+        },
+        thumbs: {
+            swiper: albumThumbsSlider,
+        },
+    });
+})
+
+
 document.addEventListener('click', (e) => {
     const target = e.target;
     const poriodItem = target.closest('.poriod-item');
@@ -201,8 +261,44 @@ document.addEventListener('click', (e) => {
             }
             )
         }
+        return;
+    }
+    if (target.closest('.period-card')) {
+        const periodCard = target.closest('.period-card');
+        const cardYear = periodCard.dataset.year;
+        const periodId = periodCard.closest('.period-cards-item').dataset.periodView;
+        const currentModal = document.querySelector(`[data-period-modal="${periodId}"]`);
+
+        if (currentModal) {
+            const targetSection = currentModal.querySelector(`[data-modal-section="${cardYear}"]`);
+            targetSection.scrollIntoView({
+                behavior: 'auto',
+                block: 'start'
+            });
+            setTimeout(() => {
+                currentModal.classList.add('show');
+            }, 100);
+
+        }
+        return;
+    }
+    if ((target.closest('.period-modal') && !target.closest('.period-modal__content')) || target.closest('.period-modal__close')) {
+        const openedModal = document.querySelector('.period-modal.show');
+        openedModal && openedModal.classList.remove('show');
+        return;
+    }
+    if ((target.closest('.album-modal') && !target.closest('.album-modal__content')) || target.closest('.album-modal__close')) {
+        const openedAlbumModal = document.querySelector('.album-modal.show');
+        openedAlbumModal && openedAlbumModal.classList.remove('show');
+        return;
+    }
+
+    if (target.closest('.album-slide__btn')) {
+        const albumYear = target.closest('.album-slide__btn').closest('.album-slide').dataset.year;
+        const currentAlbumIndex = albumSliderMain.slides.findIndex(album => album.dataset.albumYear == albumYear);
+        if (currentAlbumIndex >= 0) {
+            albumSliderMain.slideTo(currentAlbumIndex);
+            document.querySelector('.album-modal').classList.add('show');
+        }
     }
 })
-
-
-
