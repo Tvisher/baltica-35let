@@ -297,7 +297,7 @@ document.addEventListener('click', (e) => {
         const albumYear = target.closest('.album-slide__btn').closest('.album-slide').dataset.year;
         const currentAlbumIndex = albumSliderMain.slides.findIndex(album => album.dataset.albumYear == albumYear);
         if (currentAlbumIndex >= 0) {
-            albumSliderMain.slideTo(currentAlbumIndex);
+            albumSliderMain.slideTo(currentAlbumIndex, 0);
             document.querySelector('.album-modal').classList.add('show');
         }
     }
