@@ -1234,6 +1234,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: pxToRem(15);
+  text-align: right;
 
   a {
     color: #fff;
@@ -1726,7 +1727,7 @@ body {
   }
 
   .header {
-    // min-height: 100vh;
+    min-height: 100vh;
     padding-bottom: 0;
   }
 
@@ -1737,5 +1738,22 @@ body {
   .activities,
   .album-section {
     padding: pxToRem(50) 0;
+  }
+}
+
+@media (max-width: 1440px) {
+  html {
+    font-size: 13.5px;
+  }
+
+  .container {
+    max-width: initial;
+  }
+
+}
+
+@media (max-width: 1280px) {
+  html {
+    font-size: 12px;
   }
 }
