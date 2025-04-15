@@ -16,9 +16,9 @@ periodCardsItems.forEach(sliderBlock => {
 
     const periodCards = new Swiper(sliderElement, {
         slidesPerView: 'auto',
-        spaceBetween: 24,
         centeredSlides: 1,
         centeredSlidesBounds: 1,
+        resizeObserver: 0,
         init: false,
         freeMode: {
             enabled: true,
@@ -80,25 +80,8 @@ periodCardsItems.forEach(sliderBlock => {
         periodCards.slideTo(currentSlide, 800);
 
     });
-
-    // periodCards.slides.forEach(slide =>
-    //     slide.addEventListener('mouseover', (e) => {
-    //         const slideItem = e.target.closest('.period-card');
-    //         if (!slideItem) return;
-    //         const slideYear = slideItem.dataset.year;
-    //         const currentPaginationItem = paginationParent.querySelector(`[data-slide="${slideYear}"]`);
-    //         const prevActivPag = paginationParent.querySelector('.custom-cards-pagination__item.current');
-    //         prevActivPag && prevActivPag.classList.remove('current');
-    //         currentPaginationItem && currentPaginationItem.classList.add('current');
-    //     })
-    // )
-
-
 })
 periodSliders[0].init()
-
-
-
 
 const activitiesList = new Swiper('.activities__list', {
     slidesPerView: 'auto',
@@ -119,7 +102,6 @@ const albumSlider = new Swiper('.album-slider', {
     slidesPerView: 'auto',
 
     speed: 1200,
-    // spaceBetween: 140,
     freeMode: {
         enabled: true,
         sticky: true,
@@ -129,8 +111,6 @@ const albumSlider = new Swiper('.album-slider', {
         onlyInViewport: false,
     },
     pagination: {
-        // dynamicBullets: true,
-        // dynamicMainBullets: 10,
         el: '.swiper-pagination',
         type: "bullets",
     },
@@ -154,8 +134,8 @@ const timelineSlider = new Swiper('.album-timeline', {
     slidesPerView: 'auto',
     freeMode: {
         enabled: true,
-        // sticky: true,
     },
+    resizeObserver: 0,
     centeredSlides: 1,
     centeredSlidesBounds: 1,
     on: {
@@ -173,7 +153,6 @@ const timelineSlider = new Swiper('.album-timeline', {
             }
         },
         click(swiper, event) {
-
             const target = event.target;
             const currentSlide = target.closest('.timeline-slide');
             if (currentSlide) {

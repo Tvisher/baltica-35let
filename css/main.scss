@@ -301,7 +301,7 @@ html {
 }
 
 body {
-  margin: 0;
+  width: 100%;
   /* Убираем стандартные отступы body */
   padding: 0;
   /* Убираем стандартные поля body */
@@ -349,6 +349,10 @@ body {
   }
 }
 
+
+.main {
+  width: 100%;
+}
 
 .header__logo {
   width: pxToRem(160);
@@ -543,6 +547,8 @@ body {
 
 .period-cards-item {
   display: none;
+  padding: 0px 2px;
+  overflow: hidden;
 
   &.active {
     display: block;
@@ -554,7 +560,8 @@ body {
   padding: pxToRem(50) 0;
   padding-bottom: 2px;
   padding-top: pxToRem(24);
-  position: relative;
+  // position: relative;
+  width: 100%;
 
   &::before {
     z-index: 2;
@@ -599,10 +606,15 @@ body {
   width: pxToRem(360);
   transition: transform 0.2s ease-in-out;
 
+  &:not(:last-child) {
+    margin-right: pxToRem(24);
+  }
+
   &:hover {
     transform: translateY(pxToRem(-8));
 
     .period-card__top {
+
       &::before {
         opacity: 0;
       }
@@ -740,7 +752,7 @@ body {
     bottom: 0;
     height: pxToRem(4);
     width: 100%;
-    background-size: contain;
+    // background-size: contain;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='210' height='4' viewBox='0 0 210 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='210' height='4' fill='url(%23paint0_linear_215_59583)'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_215_59583' x1='0' y1='2' x2='210' y2='2' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23BE8239'/%3e%3cstop offset='0.2' stop-color='%23EED2A3'/%3e%3cstop offset='0.4' stop-color='%23FDE1B9'/%3e%3cstop offset='0.6' stop-color='%23C68E54'/%3e%3cstop offset='0.8' stop-color='%23DAA155'/%3e%3cstop offset='1' stop-color='%23BE8239'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ");
   }
 }
