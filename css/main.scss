@@ -548,7 +548,7 @@ body {
 .period-cards-item {
   display: none;
   padding: 0px 2px;
-  overflow: hidden;
+  // overflow: hidden;
 
   &.active {
     display: block;
@@ -557,11 +557,11 @@ body {
 }
 
 .period-cards {
-  padding: pxToRem(50) 0;
+
   padding-bottom: 2px;
   padding-top: pxToRem(24);
   // position: relative;
-  width: 100%;
+  // width: 100%;
 
   &::before {
     z-index: 2;
@@ -852,6 +852,11 @@ body {
 
 .activities__list {
   padding-bottom: pxToRem(20);
+  margin-left: pxToRem(-20);
+  margin-right: pxToRem(-20);
+  padding-left: pxToRem(20);
+  padding-right: pxToRem(20);
+
 }
 
 .activities-item {
@@ -949,7 +954,6 @@ body {
 }
 
 .album-timeline {
-  width: 100%;
   margin-bottom: pxToRem(35);
   padding-bottom: pxToRem(35);
   position: relative;
@@ -1670,6 +1674,23 @@ body {
   }
 }
 
+
+@media (max-width: 1720px) {
+
+  .period-cards,
+  .album-timeline,
+  .poriods-slider {
+    margin-left: pxToRem(-20);
+    margin-right: pxToRem(-20);
+    padding-left: pxToRem(20);
+    padding-right: pxToRem(20);
+  }
+
+  .album-timeline__wrapper:before {
+    left: pxToRem(-20);
+    width: calc(100% + pxToRem(40));
+  }
+}
 
 
 @media (max-width: 1600px) {
