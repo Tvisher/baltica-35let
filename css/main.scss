@@ -366,7 +366,7 @@ body {
 }
 
 .header {
-  overflow: hidden;
+  // overflow: hidden;
   padding: pxToRem(32) 0;
   background-image: url(../img/main-bg.jpg);
   background-repeat: no-repeat;
@@ -377,7 +377,7 @@ body {
   &::before {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -1px;
     height: pxToRem(120);
     width: 100%;
     content: "";
