@@ -321,7 +321,7 @@ body {
 .container {
   width: 100%;
   /* Контейнер занимает всю доступную ширину родительского элемента */
-  max-width: 1720px;
+  max-width: pxToRem(1720);
   /* Устанавливаем максимальную ширину контейнера (может быть изменена) */
   margin-left: auto;
   /* Автоматически распределяет левое поле */
@@ -639,8 +639,8 @@ body {
     position: absolute;
     left: -1px;
     top: -1px;
-    width: calc(100% + 1px);
-    height: calc(100% + 1px);
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
     content: "";
     z-index: 1;
     background-image: url(../img/card-bg-gray.jpg);
@@ -703,7 +703,7 @@ body {
   margin-top: auto;
   position: relative;
   z-index: 2;
-  border-radius: 10px;
+  border-radius: pxToRem(10);
   background: linear-gradient(90deg,
       #cc985d 0%,
       #eed2a3 20%,
@@ -711,13 +711,13 @@ body {
       #c68e54 60%,
       #daa155 80%,
       #be8239 100%);
-  padding: 15px;
+  padding: pxToRem(15);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: pxToRem(10);
   color: #fff;
-  font-size: 24px;
+  font-size: pxToRem(24);
   font-weight: 700;
 }
 
@@ -1658,123 +1658,7 @@ body {
   }
 }
 
-// @media (max-width: 1600px) {
 
-//   .activities-item {
-//     width: 360px;
-//     height: 340px;
-//   }
-
-//   .activities-item__title {
-//     font-size: 32px;
-//   }
-
-//   .activities-item__descr {
-//     font-size: 16px;
-//   }
-
-//   .main-title {
-//     font-size: 80px;
-//   }
-
-//   .main-year-image {
-//     position: static;
-//     width: 500px;
-//     height: 380px;
-//   }
-
-//   .header__bottom {
-//     padding: 200px 0;
-//     display: flex;
-//     align-items: flex-end;
-//     justify-content: space-between;
-//   }
-
-//   .activities,
-//   .album-section {
-//     padding: 80px 0;
-//   }
-
-//   .header {
-//     padding-bottom: 0;
-//     min-height: 100vh;
-//   }
-
-//   .history {
-//     padding-top: 0px;
-//   }
-
-//   .section-title {
-//     font-size: 52px;
-//     margin-bottom: 30px;
-//   }
-
-//   .poriods-slider {
-//     margin-bottom: 30px;
-//   }
-
-//   .period-card__top {
-//     height: 250px;
-//     padding: 18px;
-//   }
-
-//   .period-card__year {
-//     font-size: 58px;
-//   }
-
-//   .period-card__text {
-//     font-size: 22px;
-//   }
-
-//   .period-card__bottom {
-//     height: 250px;
-//   }
-
-//   .period-card {
-//     width: 320px;
-//   }
-
-//   .custom-cards-pagination {
-//     font-size: 28px;
-//   }
-
-//   .album-modal__content {
-//     padding: 30px 0;
-//   }
-
-//   .album-modal__close {
-//     top: 30px;
-//   }
-
-//   .album-modal__content {
-//     max-width: 980px;
-//   }
-
-//   .group-main__image {
-//     height: 480px;
-//   }
-
-//   .group-thumbs .swiper-slide {
-//     width: 100px;
-//     height: 100px;
-//   }
-
-//   .group-main-arrows {
-//     padding-top: 18px;
-//   }
-
-//   .album-item__group {
-//     gap: 18px;
-//   }
-
-//   .group-thumbs__progress {
-//     margin-top: 18px;
-//   }
-
-//   .album-item__head {
-//     margin-bottom: 18px;
-//   }
-// }
 
 @media (max-width: 1600px) {
   html {
