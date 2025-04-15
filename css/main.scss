@@ -552,7 +552,7 @@ body {
 
 .period-cards {
   padding: pxToRem(50) 0;
-  padding-bottom: 0;
+  padding-bottom: 2px;
   padding-top: pxToRem(24);
   position: relative;
 
@@ -560,9 +560,9 @@ body {
     z-index: 2;
     content: "";
     position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
+    right: -1px;
+    top: -1px;
+    height: calc(100% + 2px);
     width: pxToRem(300);
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
     pointer-events: none;
@@ -573,9 +573,9 @@ body {
     z-index: 2;
     content: "";
     position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
+    left: -1px;
+    top: -1px;
+    height: calc(100% + 2px);
     width: pxToRem(300);
     transform: scaleX(-1);
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
