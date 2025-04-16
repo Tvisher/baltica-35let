@@ -885,7 +885,7 @@ body {
   &.blocked {
     .activities-item__wrapper {
       color: #c7c7c7;
-      pointer-events: none;
+      // pointer-events: none;
     }
 
     .activities-item__btn {
@@ -893,7 +893,7 @@ body {
     }
 
     &::before {
-      z-index: 2;
+      z-index: 5;
       opacity: 1;
       background-image: url(../img/activity-blocked.svg);
     }
@@ -1668,6 +1668,7 @@ body {
     opacity: 1;
     width: pxToRem(12) !important;
     height: pxToRem(12) !important;
+    margin: 0 !important;
     background-color: #C8C8C8;
 
     &.swiper-pagination-bullet-active {

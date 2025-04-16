@@ -107,11 +107,12 @@ const activitiesList = new Swiper('.activities__list', {
     pagination: {
         el: '.swiper-pagination',
         type: "bullets",
+        clickable: 1,
     },
-    freeMode: {
-        enabled: !isMobileInit,
-        sticky: !isMobileInit,
-    },
+    // freeMode: {
+    //     enabled: !isMobileInit,
+    //     sticky: !isMobileInit,
+    // },
 });
 
 
@@ -131,6 +132,7 @@ const albumSlider = new Swiper('.album-slider', {
     pagination: {
         el: '.swiper-pagination',
         type: "bullets",
+        clickable: 1,
     },
     on: {
         activeIndexChange(swiper) {
