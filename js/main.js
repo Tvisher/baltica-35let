@@ -109,8 +109,8 @@ const activitiesList = new Swiper('.activities__list', {
         type: "bullets",
     },
     freeMode: {
-        enabled: isMobileInit,
-        sticky: true,
+        enabled: !isMobileInit,
+        sticky: !isMobileInit,
     },
 });
 
@@ -119,6 +119,7 @@ const albumSlidepSpeed = isMobileInit ? 500 : 1200;
 const albumSlider = new Swiper('.album-slider', {
     slidesPerView: 'auto',
     speed: albumSlidepSpeed,
+    touchRatio: 0.5,
     freeMode: {
         enabled: isMobileInit,
         sticky: isMobileInit,
@@ -204,6 +205,7 @@ albumItems.forEach(slideItem => {
     const mainThumbs = slideItem.querySelector('.group-thumbs');
     const progressBlock = slideItem.querySelector(".group-thumbs__progress")
     const albumThumbsSlider = new Swiper(mainThumbs, {
+        touchRatio: 0.5,
         spaceBetween: 10,
         slidesPerView: "auto",
         freeMode: !isMobileInit,
