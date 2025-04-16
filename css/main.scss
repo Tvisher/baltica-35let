@@ -2086,6 +2086,10 @@ body {
 
   .group-main__image .group-main__descr {
     padding: pxToRem(16);
+
+    span {
+      padding-left: pxToRem(16);
+    }
   }
 
   .group-thumbs__progress {
