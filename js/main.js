@@ -129,11 +129,11 @@ const albumSlider = new Swiper('.album-slider', {
         enabled: true,
         onlyInViewport: false,
     },
-    pagination: {
-        el: '.swiper-pagination',
-        type: "bullets",
-        clickable: 1,
-    },
+    // pagination: {
+    //     el: '.swiper-pagination',
+    //     type: "bullets",
+    //     clickable: 1,
+    // },
     on: {
         activeIndexChange(swiper) {
             // if (isMobileInit) return;
