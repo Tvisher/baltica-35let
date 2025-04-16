@@ -136,7 +136,7 @@ const albumSlider = new Swiper('.album-slider', {
     },
     on: {
         activeIndexChange(swiper) {
-            if (isMobileInit) return;
+            // if (isMobileInit) return;
             const currentSlide = swiper.slides[swiper.activeIndex];
             const activeYear = currentSlide.dataset.year;
             const timelineNeededSlideIndex = timelineSlider.slides.findIndex(slide => slide.dataset.year == activeYear);

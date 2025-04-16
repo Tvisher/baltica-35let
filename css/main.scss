@@ -2047,7 +2047,17 @@ body {
   }
 
   .album-timeline__wrapper {
-    display: none;
+    // display: none;
+  }
+
+  .album-timeline {
+    margin-bottom: pxToRem(20);
+  }
+
+
+  .album-timeline::before,
+  .album-timeline::after {
+    width: 20vw;
   }
 
   ._sliders-pagination {
