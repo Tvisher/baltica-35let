@@ -27,8 +27,8 @@ periodCardsItems.forEach(sliderBlock => {
         resizeObserver: 0,
         init: false,
         freeMode: {
-            enabled: isMobileInit,
-            sticky: isMobileInit,
+            enabled: !isMobileInit,
+            sticky: !isMobileInit,
         },
         on: {
             init(swiper) {
