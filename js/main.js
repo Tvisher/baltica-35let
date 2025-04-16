@@ -1,11 +1,17 @@
+const isMobileInit = window.innerWidth <= 576;
+
 const periodsSlider = new Swiper('.poriods-slider', {
     slidesPerView: 'auto',
     spaceBetween: 16,
+    slideToClickedSlide: isMobileInit,
     freeMode: {
-        enabled: true,
+        enabled: 1,
         sticky: true,
     },
 });
+
+
+
 
 let periodSliders = [];
 const periodCardsItems = document.querySelectorAll('.period-cards-item');
@@ -16,17 +22,18 @@ periodCardsItems.forEach(sliderBlock => {
 
     const periodCards = new Swiper(sliderElement, {
         slidesPerView: 'auto',
-        centeredSlides: 1,
-        centeredSlidesBounds: 1,
+        centeredSlides: !isMobileInit,
+        centeredSlidesBounds: !isMobileInit,
         resizeObserver: 0,
         init: false,
         freeMode: {
-            enabled: true,
-            sticky: true,
+            enabled: isMobileInit,
+            sticky: isMobileInit,
         },
         on: {
             init(swiper) {
                 renderCustomPagination(swiper);
+                if (isMobileInit) return;
                 swiper.slides.forEach(slide =>
                     slide.addEventListener('mouseover', (e) => {
                         const slideItem = e.target.closest('.period-card');
@@ -40,6 +47,7 @@ periodCardsItems.forEach(sliderBlock => {
                 )
             },
             transitionStart(swiper) {
+                if (isMobileInit) return;
                 if (swiper.isEnd) {
                     swiper.el.classList.add('slider-end')
                 } else {
@@ -52,6 +60,16 @@ periodCardsItems.forEach(sliderBlock => {
                     swiper.el.classList.remove('slider-start')
                 }
             },
+            activeIndexChange(swiper) {
+                if (isMobileInit) {
+                    const slideItem = swiper.slides[swiper.activeIndex];
+                    const slideYear = slideItem.dataset.year;
+                    const currentPaginationItem = paginationParent.querySelector(`[data-slide="${slideYear}"]`);
+                    const prevActivPag = paginationParent.querySelector('.custom-cards-pagination__item.current');
+                    prevActivPag && prevActivPag.classList.remove('current');
+                    currentPaginationItem && currentPaginationItem.classList.add('current');
+                }
+            }
 
         }
     });
@@ -91,20 +109,19 @@ const activitiesList = new Swiper('.activities__list', {
         type: "bullets",
     },
     freeMode: {
-        enabled: true,
+        enabled: isMobileInit,
         sticky: true,
     },
 });
 
 
-
+const albumSlidepSpeed = isMobileInit ? 500 : 1200;
 const albumSlider = new Swiper('.album-slider', {
     slidesPerView: 'auto',
-
-    speed: 1200,
+    speed: albumSlidepSpeed,
     freeMode: {
-        enabled: true,
-        sticky: true,
+        enabled: isMobileInit,
+        sticky: isMobileInit,
     },
     keyboard: {
         enabled: true,
@@ -116,6 +133,7 @@ const albumSlider = new Swiper('.album-slider', {
     },
     on: {
         activeIndexChange(swiper) {
+            if (isMobileInit) return;
             const currentSlide = swiper.slides[swiper.activeIndex];
             const activeYear = currentSlide.dataset.year;
             const timelineNeededSlideIndex = timelineSlider.slides.findIndex(slide => slide.dataset.year == activeYear);
@@ -168,11 +186,6 @@ const timelineSlider = new Swiper('.album-timeline', {
 });
 
 
-
-
-
-
-
 const albumSliderMain = new Swiper(".album-modal__slider-main", {
     allowTouchMove: false,
     spaceBetween: 100,
@@ -193,7 +206,7 @@ albumItems.forEach(slideItem => {
     const albumThumbsSlider = new Swiper(mainThumbs, {
         spaceBetween: 10,
         slidesPerView: "auto",
-        freeMode: true,
+        freeMode: !isMobileInit,
         watchSlidesProgress: true,
         mousewheel: {
             enable: true,

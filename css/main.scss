@@ -342,13 +342,6 @@ body {
   }
 }
 
-/* Адаптивные стили для еще меньших экранов (например, мобильных телефонов) */
-@media (max-width: 576px) {
-  .container {
-    padding-left: pxToRem(10);
-    padding-right: pxToRem(10);
-  }
-}
 
 
 .main {
@@ -1200,6 +1193,10 @@ body {
   font-weight: 800;
   line-height: 100%;
   text-transform: uppercase;
+
+  br {
+    display: none;
+  }
 }
 
 .footer__socials {
@@ -1661,7 +1658,6 @@ body {
   position: static;
   margin: 0;
   transform: none !important;
-  display: flex;
   gap: pxToRem(16);
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -1760,4 +1756,343 @@ body {
   html {
     font-size: 12px;
   }
+}
+
+@media (max-width: 992px) {
+
+  .header__bottom {
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: pxToRem(40);
+  }
+
+  .header {
+    min-height: initial;
+  }
+
+  .modal-section__image {
+    width: pxToRem(220);
+    height: pxToRem(220);
+  }
+
+  .footer__title {
+    br {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-section__images {
+    flex-wrap: wrap;
+  }
+
+  .footer {
+    background-image: url(../img/footer-bg-mob.svg);
+  }
+
+  .footer__links {
+    text-align: center;
+  }
+
+  .footer__top,
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: pxToRem(30);
+  }
+
+  .footer__socials {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feedback-btn {
+    flex: 0 0 100%;
+    text-align: center;
+    margin: 0;
+    order: -1;
+  }
+
+  .social-item {
+    width: pxToRem(30);
+    height: pxToRem(30);
+  }
+
+  .period-cards,
+  .album-timeline,
+  .poriods-slider,
+  .activities__list {
+    margin-left: pxToRem(-15);
+    margin-right: pxToRem(-15);
+    padding-left: pxToRem(15);
+    padding-right: pxToRem(15);
+  }
+
+  .album-timeline__wrapper:before {
+    left: pxToRem(-15);
+    width: calc(100% + pxToRem(30));
+  }
+}
+
+
+
+@media (max-width: 576px) {
+  html {
+    font-size: 16px;
+  }
+
+  .header__logo {
+    width: pxToRem(100);
+    height: pxToRem(30);
+  }
+
+
+  .header__nav {
+    display: none;
+  }
+
+  .main-title {
+    font-size: pxToRem(42);
+    order: 2;
+  }
+
+  .main-year-image {
+    width: 80vw;
+    height: 63vw;
+  }
+
+  .header {
+    background-image: url(../img/main-bg-mob.jpg);
+  }
+
+  .header::before {
+    background-image: url(../img/main-before-mob.png);
+    height: 2.5rem;
+  }
+
+  .header__bottom {
+    padding-bottom: pxToRem(100);
+    gap: pxToRem(70);
+  }
+
+  .modal-section__images {
+    flex-direction: column;
+  }
+
+  .modal-section__title {
+    font-size: pxToRem(28);
+  }
+
+  .modal-text-content {
+    font-size: pxToRem(16);
+  }
+
+  .period-modal__title {
+    font-size: pxToRem(32);
+  }
+
+  .period-modal,
+  .album-modal {
+    padding: pxToRem(16);
+  }
+
+  .period-modal__content {
+    padding-bottom: pxToRem(24);
+  }
+
+  .modal-section__image {
+    width: 100%;
+  }
+
+  .period-modal__body {
+    padding: pxToRem(24);
+    padding-top: 0;
+  }
+
+  .modal-section::before,
+  .modal-section__title::before {
+    display: none;
+  }
+
+  .modal-section {
+    padding-left: 0;
+  }
+
+  .poriods-slider {
+    margin-bottom: pxToRem(24);
+  }
+
+  .poriod-item {
+    width: 80%;
+  }
+
+
+  .section-title {
+    font-size: pxToRem(28);
+    margin-bottom: pxToRem(24);
+  }
+
+  .custom-cards-pagination__item {
+    color: transparent;
+  }
+
+  .custom-cards-pagination__item.current {
+    color: #002D74;
+  }
+
+  .period-cards::before,
+  .period-cards::after {
+    display: none;
+  }
+
+  .period-cards {
+    padding-top: pxToRem(32);
+  }
+
+  .period-card {
+    width: 100%;
+    border-radius: pxToRem(16);
+
+    &.swiper-slide-active {
+      transform: translateY(0) !important;
+
+      .period-card__top {
+
+        &::before {
+          opacity: 0;
+        }
+      }
+
+      .period-card__year,
+      .period-card__text {
+        color: #fff;
+      }
+
+      .period-card__bottom img {
+        filter: grayscale(0);
+      }
+
+      .card-btn {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+
+  .custom-cards-pagination {
+    font-size: pxToRem(24);
+  }
+
+  .activities-item {
+    width: 100%;
+    height: 95vw;
+
+    &.swiper-slide-active {
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .period-card__top {
+    height: 60vw;
+  }
+
+  .period-card__bottom {
+    height: 70vw;
+
+  }
+
+  .album-slide {
+    height: auto;
+    width: 100%;
+  }
+
+  .album-slide__wrapper {
+    flex-direction: column;
+  }
+
+  .album-slide__image {
+    width: 100%;
+    height: 60vw;
+  }
+
+  .album-slide__content {
+    height: 100%;
+    padding: pxToRem(16) pxToRem(24);
+    padding-bottom: pxToRem(31);
+    background-image: url(../img/album-bg-mob.png);
+  }
+
+  .album-slide__year {
+    font-size: pxToRem(48);
+  }
+
+  .album-slide__text {
+    font-size: pxToRem(16);
+    margin-bottom: pxToRem(40);
+  }
+
+  .album-slide__btn {
+    font-size: pxToRem(24);
+    padding: pxToRem(12);
+    border-radius: pxToRem(10);
+    gap: pxToRem(10);
+  }
+
+  .album-timeline__wrapper {
+    display: none;
+  }
+
+  ._sliders-pagination {
+    display: flex;
+  }
+
+  .period-modal__head {
+    background-image: none;
+    padding: pxToRem(16) pxToRem(20);
+  }
+
+  .modal-section {
+    padding-bottom: pxToRem(16);
+  }
+
+  .group-thumbs .swiper-slide {
+    width: 100%;
+  }
+
+  .group-thumbs .swiper-slide,
+  .group-thumbs .swiper-wrapper {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .group-main__image .group-main__descr {
+    padding: pxToRem(16);
+  }
+
+  .group-thumbs__progress {
+    margin-top: 0;
+  }
+
+  .group-main__image {
+    height: 59vh;
+  }
+
+  .activities,
+  .album-section {
+    padding: pxToRem(45) 0;
+  }
+
+  .activities__list {
+    padding-bottom: 0;
+  }
+
+
 }
