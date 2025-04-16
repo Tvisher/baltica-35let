@@ -1897,7 +1897,7 @@ body {
   }
 
   .period-modal__title {
-    font-size: pxToRem(32);
+    font-size: pxToRem(24);
   }
 
   .period-modal,
@@ -2125,4 +2125,15 @@ body {
     padding-bottom: pxToRem(45);
   }
 
+  .modal-section__image {
+    height: pxToRem(170);
+  }
+
+  .modal-section__image-descr {
+    opacity: 1;
+  }
+
+  .modal-section__images {
+    gap: pxToRem(12);
+  }
 }
