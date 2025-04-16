@@ -236,6 +236,7 @@ albumItems.forEach(slideItem => {
     });
 })
 
+const mobMenu = document.querySelector('#mob-menu');
 
 document.addEventListener('click', (e) => {
     const target = e.target;
@@ -296,5 +297,16 @@ document.addEventListener('click', (e) => {
             albumSliderMain.slideTo(currentAlbumIndex, 0);
             document.querySelector('.album-modal').classList.add('show');
         }
+    }
+
+    if (target.closest('.mob-btn')) {
+        mobMenu.classList.add('show');
+    }
+
+    if (target.closest('.mob-btn__close')) {
+        mobMenu.classList.remove('show');
+    }
+    if (target.closest('.header__link') && isMobileInit) {
+        mobMenu.classList.remove('show');
     }
 })
