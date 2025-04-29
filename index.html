@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./css/main.min.css?v=1" />
 </head>
 
-<body>
+<body class="not-auth">
   <header class="header">
     <div class="container">
       <div class="header__top">
@@ -1828,7 +1828,6 @@
       </div>
     </div>
   </div>
-
   <div class="period-modal" data-period-modal="2">
     <div class="period-modal__content">
       <div class="period-modal__head">
@@ -2221,8 +2220,6 @@
       </div>
     </div>
   </div>
-
-
   <div class="album-modal">
     <div class="album-modal__content">
       <div class="album-modal__close">
@@ -2505,8 +2502,73 @@
       </div>
     </div>
   </div>
+
+  <div class="auth-modal">
+    <div class="auth-modal__content">
+      <div class="auth-modal__head">
+        Авторизация
+      </div>
+      <form class="auth-form">
+        <label class="auth-modal__field">
+          <span>Ваш табельный номер</span>
+          <input type="number" placeholder="00000000" class="auth-modal__input" name="personnel-number">
+          <div class="error-message"></div>
+        </label>
+        <button class="auth-submit-btn" type="submit">Войти</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./js/jquery.min.js"></script>
+  <script>
+    const authForm = document.querySelector('.auth-form');
+    const personnelNumber = authForm.querySelector('.auth-modal__input');
+    const errField = authForm.querySelector('.error-message');
+    const authModalField = authForm.querySelector('.auth-modal__field');
+
+
+    personnelNumber.addEventListener('input', (e) => {
+      authModalField.classList.remove('err');
+    })
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const personnelNumberValue = personnelNumber.value.trim();
+      if (personnelNumberValue.length < 1) {
+        errField.innerHTML = "Поле не может быть пустым";
+        authModalField.classList.add('err');
+        return;
+      }
+      $.ajax({
+        type: 'POST',
+        url: 'someUrl',
+        dataType: 'json',
+        data: {
+          personnelNumber: personnelNumberValue
+        },
+        success: function (data) {
+
+          if (data.success) {
+            window.location.reload();
+          }
+          if (data.error) {
+            errField.innerHTML = "Неправильный табельный номер";
+            authModalField.classList.add('err');
+          }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          // Eсли ошибка, выводим ошибку
+          errField.innerHTML = "Что то пошло не так, попробуйте позднее";
+          authModalField.classList.add('err');
+
+        }
+      });
+    });
+  </script>
+
   <script src="./js/swiper-bundle.min.js"></script>
   <script src="./js/main.js"></script>
+
+
 </body>
 
 </html>
