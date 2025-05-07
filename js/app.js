@@ -68,14 +68,14 @@ messageForm.addEventListener('submit', (e) => {
                         </div>
                     </div>
                     <div class="message-form">
-                        <p class="message-form__text">Спасибо за отправленное вами сообщение! Оно будет рассмотрено модератором.</p>
+                        <p class="message-form__text">Спасибо за отправленное вами сообщение! <br> Оно будет рассмотрено модератором.</p>
                         <button class="auth-submit-btn" type="button" data-close-modal>Закрыть</button>
                     </div>
                 </div>
             `;
             messageModal.innerHTML = modalResult;
         },
-        error: function (xhr, ajaxOptions, thrownError) {
+        error: function () {
             messageModal.classList.remove('pending');
             alert('Произошла ошибка, пожалуйста попробуйте позднее');
         }
