@@ -11,8 +11,6 @@ const periodsSlider = new Swiper('.poriods-slider', {
 });
 
 
-
-
 let periodSliders = [];
 const periodCardsItems = document.querySelectorAll('.period-cards-item');
 periodCardsItems.forEach(sliderBlock => {
@@ -236,7 +234,7 @@ albumItems.forEach(slideItem => {
     });
 })
 
-const mobMenu = document.querySelector('#mob-menu');
+
 
 document.addEventListener('click', (e) => {
     const target = e.target;

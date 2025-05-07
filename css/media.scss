@@ -159,6 +159,7 @@
     }
 }
 
+
 @media (max-width: 576px) {
     html {
         font-size: 16px;
@@ -418,10 +419,6 @@
         gap: pxToRem(10);
     }
 
-    .album-timeline__wrapper {
-        // display: none;
-    }
-
     .album-timeline {
         margin-bottom: pxToRem(20);
     }
@@ -509,5 +506,29 @@
 
     .modal-section__images {
         gap: pxToRem(12);
+    }
+
+
+    .auth-modal,
+    .message-modal {
+
+        .auth-modal__head,
+        .auth-form,
+        .message-form {
+            padding: 20px;
+        }
+
+        .auth-modal__head {
+            font-size: 32px;
+        }
+
+        .auth-submit-btn {
+            font-size: 22px;
+            margin-top: 20px;
+        }
+    }
+
+    .message-form__text {
+        font-size: 22px;
     }
 }
