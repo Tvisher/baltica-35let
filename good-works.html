@@ -11,6 +11,7 @@
     <link rel="preload" href="./fonts/Verdana-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="./fonts/Verdana-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/select2.min.css" />
     <link rel="stylesheet" href="./css/main.min.css?v=1" />
 </head>
 <!-- not-auth тегу body если юзер не авторизован -->
@@ -168,6 +169,66 @@
                     Ленинградского производственного объединения пивоваренной и безалкогольной промышленности «Ленпиво».
                     Строительство завода началось в 1978 году. В 1990 году, после его завершения, было образовано
                     Государственное предприятие «Пивоваренный завод «Балтика».</div>
+            </div>
+        </section>
+        <section class="suggest-event">
+            <div class="container">
+                <h2 class="section-title">Предложить мероприятие</h2>
+                <form class="suggest-event__form">
+                    <div class="form-wrapper">
+                        <label class="form-label">
+                            <span>Ваш табельный номер</span>
+                            <div class="form-label__wrapper">
+                                <input type="text" class="form-input" name="personnel-number" placeholder=""
+                                    value="000000" readonly>
+                                <div class="label-ico"></div>
+                            </div>
+                        </label>
+
+                        <label class="form-label">
+                            <span>Выберите город</span>
+                            <div class="form-label__wrapper">
+                                <select name="city" class="form-select">
+                                    <option value="Москва">Москва</option>
+                                    <option value="Новосибирск">Новосибирск</option>
+                                    <option value="Омск">Омск</option>
+                                    <option value="Санкт-Петербург">Санкт-Петербург</option>
+                                </select>
+                                <div class="label-ico"></div>
+                            </div>
+                        </label>
+                        <label class="form-label">
+                            <span>Количество участников</span>
+                            <div class="form-label__wrapper">
+                                <input type="number" class="form-input" value="" placeholder="" name="who-to-help">
+                                <div class="label-ico"></div>
+                            </div>
+                        </label>
+                        <label class="form-label">
+                            <span>Кому помочь</span>
+                            <div class="form-label__wrapper">
+                                <input type="text" class="form-input" value="" placeholder="" name="who-to-help">
+                                <div class="label-ico"></div>
+                            </div>
+                        </label>
+
+                        <label class="form-label">
+                            <span>Как помочь</span>
+                            <div class="form-label__wrapper">
+                                <input type="text" class="form-input" value="" placeholder="" name="how-to-help">
+                                <div class="label-ico"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <button type="submit" class="report-slide__btn">
+                        <span>Отправить</span>
+                        <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M1.5 7C0.947715 7 0.5 7.44772 0.5 8C0.5 8.55228 0.947715 9 1.5 9V7ZM22.2071 8.70711C22.5976 8.31658 22.5976 7.68342 22.2071 7.29289L15.8431 0.928932C15.4526 0.538408 14.8195 0.538408 14.4289 0.928932C14.0384 1.31946 14.0384 1.95262 14.4289 2.34315L20.0858 8L14.4289 13.6569C14.0384 14.0474 14.0384 14.6805 14.4289 15.0711C14.8195 15.4616 15.4526 15.4616 15.8431 15.0711L22.2071 8.70711ZM1.5 8V9H21.5V8V7H1.5V8Z"
+                                fill="white" />
+                        </svg>
+                    </button>
+                </form>
             </div>
         </section>
         <section class="events-map">
@@ -937,7 +998,7 @@
     </div>
     <!-- Модальное окно обратной связи -->
     <div class="message-modal" data-message-modal>
-        <div class="auth-modal__content">
+        <!-- <div class="auth-modal__content">
             <div class="auth-modal__head">
                 <span>Обратная связь</span>
                 <div class="message-modal__close" data-close-modal>
@@ -964,11 +1025,28 @@
             <div class="loader-wrapper">
                 <div class="loader"></div>
             </div>
+        </div> -->
+        <div class="auth-modal__content">
+            <div class="auth-modal__head">
+                <span>Обратная связь</span>
+                <div class="message-modal__close" data-close-modal="">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1L1 13M1 1L13 13" stroke="#002D74" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="message-form">
+                <p class="message-form__text">По вопросам работы сайта можно обращаться по адресу: <a target="_blank"
+                        style="color:#be8239" href="mailto:corcom@baltika.com">corcom@baltika.com</a></p>
+                <button class="auth-submit-btn" type="button" data-close-modal="">Закрыть</button>
+            </div>
         </div>
     </div>
 
     <script src="./js/jquery.min.js"></script>
     <script src="./js/swiper-bundle.min.js"></script>
+    <script src="./js/select2.min.js"></script>
     <script src="./js/app.js"></script>
     <script src="./js/good-works.js"></script>
 

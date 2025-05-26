@@ -31,3 +31,11 @@ const galleryOfReports = new Swiper('.gallery-of-reports__slider', {
         clickable: 1,
     },
 });
+
+
+
+$(document).ready(function () {
+    $('.form-select').select2({
+        minimumResultsForSearch: -1
+    });
+});
