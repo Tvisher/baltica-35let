@@ -1271,7 +1271,8 @@ body {
   }
 }
 
-.period-modal {
+.period-modal,
+.activity-modal {
   // display: none;
   position: fixed;
   left: 0;
@@ -1315,7 +1316,8 @@ body {
   }
 }
 
-.period-modal__content {
+.period-modal__content,
+.activity-modal__content {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1328,7 +1330,8 @@ body {
   padding-bottom: pxToRem(64);
 }
 
-.period-modal__head {
+.period-modal__head,
+.activity-modal__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1341,7 +1344,8 @@ body {
   background-position: right;
 }
 
-.period-modal__body {
+.period-modal__body,
+.activity-modal__body {
   padding: pxToRem(48) pxToRem(72) 0px pxToRem(40);
   padding-top: 0;
   background-color: #fff;
@@ -2694,6 +2698,56 @@ body {
   b {
     display: none;
   }
+}
+
+.activity-modal__body {
+  padding-top: pxToRem(48);
+}
+
+.activity-modal__head {
+  padding-top: pxToRem(40);
+  padding-bottom: pxToRem(20);
+  background: linear-gradient(132deg, #E9EFF9 0%, #F0EFE4 100%);
+}
+
+.activity-modal__date {
+  color: #FFF;
+  font-family: 'Akrobat';
+  font-size: pxToRem(16);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  text-transform: uppercase;
+  margin-bottom: pxToRem(12);
+  border-radius: pxToRem(20);
+  background: #A1B1C8;
+  width: fit-content;
+  padding: pxToRem(5) pxToRem(10);
+}
+
+.activity-modal__name {
+  color: #002D74;
+  font-family: 'Akrobat';
+  font-size: pxToRem(48);
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.activity-modal__close {
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: pxToRem(12);
+  border: 2px solid #F1BC7C;
+  width: pxToRem(48);
+  height: pxToRem(48);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='14' height='15' viewBox='0 0 14 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M13 1.5L1 13.5M1 1.5L13 13.5' stroke='%23002D74' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e ");
+  background-repeat: no-repeat;
+  background-size: pxToRem(12);
+  background-position: center
+}
+
+.activity-modal__form {
+  padding-top: pxToRem(72);
 }
 
 @import "media.scss";
