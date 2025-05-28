@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="good-works__btn">
-                    <div class="good-works__btn-text">Рассказать о добром деле</div>
+                    <div class="good-works__btn-text" data-good-works>Рассказать о добром деле</div>
                 </div>
             </div>
         </div>
@@ -1058,7 +1058,7 @@
                             <label class="form-label">
                                 <span>Как помогли</span>
                                 <div class="form-label__wrapper">
-                                    <input type="text" class="form-input" value="" placeholder=" " name="how-was-help">
+                                    <textarea class="form-input" placeholder=" " name="how-was-help"></textarea>
                                     <div class="label-ico"></div>
                                 </div>
                             </label>
@@ -1168,7 +1168,7 @@
                             <label class="form-label">
                                 <span>Как помогли</span>
                                 <div class="form-label__wrapper">
-                                    <input type="text" class="form-input" value="" placeholder=" " name="how-was-help">
+                                    <textarea class="form-input" placeholder=" " name="how-was-help"></textarea>
                                     <div class="label-ico"></div>
                                 </div>
                             </label>
@@ -1223,8 +1223,10 @@
                                 </div>
                             </label>
                             <label class="form-label">
+                                <span>Название активности</span>
                                 <div class="form-label__wrapper">
                                     <select name="event-select" class="form-select">
+                                        <option></option>
                                         <option value="1">Какая то активность (Москва)</option>
                                         <option value="2">Какая то активность 2 (Новосибирск)</option>
                                         <option value="3">Какая то активность 3 (Омск)</option>

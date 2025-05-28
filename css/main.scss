@@ -1097,7 +1097,6 @@ body {
 }
 
 .album-slide__content {
-  // padding: 32px;
   padding: clamp(1px, 1.9vw, pxToRem(32));
   background-image: url(../img/album-bg.png);
   background-size: cover;
@@ -1293,6 +1292,12 @@ body {
 
   transition: opacity 0.3s ease-in-out,
   visibility 0.3s ease-in-out;
+}
+
+.activity-modal {
+  .form-wrapper::before {
+    height: pxToRem(640);
+  }
 }
 
 .period-modal__title {
@@ -1775,7 +1780,7 @@ body {
 .message-modal__text {
   border-color: #c8c8c8;
   resize: vertical;
-  min-height: 200px;
+  min-height: pxToRem(200);
 }
 
 .error-message {
@@ -1950,9 +1955,9 @@ body {
 .counter__descr {
   color: #fff;
   text-align: center;
-  text-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25);
+  text-shadow: 0px pxToRem(4) pxToRem(24) rgba(0, 0, 0, 0.25);
   font-family: "Akrobat";
-  font-size: 96px;
+  font-size: pxToRem(96);
   font-style: normal;
   font-weight: 900;
   line-height: 100%;
@@ -2017,9 +2022,8 @@ body {
     content: "";
     position: absolute;
     left: 50%;
-
-    width: 2px;
-    height: 8px;
+    width: pxToRem(2);
+    height: pxToRem(8);
     background: #fff;
   }
 
@@ -2257,11 +2261,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: pxToRem(12);
 
   .ico {
-    width: 24px;
-    height: 26px;
+    width: pxToRem(24);
+    height: pxToRem(26);
     position: relative;
 
     svg {
@@ -2586,9 +2590,7 @@ body {
   position: relative;
   line-height: 133.333%;
 
-  i {
-    font-size: pxToRem(14);
-  }
+
 
   span {
     color: #90959f;
@@ -2654,9 +2656,17 @@ body {
     }
   }
 
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 120%;
+  }
+
   .select2-container {
     width: 100% !important;
     margin-bottom: 0;
+  }
+
+  .select2-selection__placeholder {
+    font-size: pxToRem(18);
   }
 
   .select2-container .select2-selection--single {
@@ -2703,7 +2713,7 @@ body {
 
 .select2-dropdown {
   border: none;
-  padding-top: 15px;
+  padding-top: pxToRem(15);
   background-color: transparent;
 }
 
@@ -2840,6 +2850,10 @@ body {
 
   .suggest-event__form {
     max-width: inherit;
+  }
+
+  .form-wrapper::before {
+    height: pxToRem(520);
   }
 }
 

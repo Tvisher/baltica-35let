@@ -36,13 +36,14 @@ const galleryOfReports = new Swiper('.gallery-of-reports__slider', {
 
 $(document).ready(function () {
     $('.form-select').select2({
-        minimumResultsForSearch: -1
+        minimumResultsForSearch: -1,
+        placeholder: "Выбрать активность",
     });
 });
 
 
 // Инит дропзон и базовые параметры
-const maxFilesCount = 5;// Максимальное колличество файлов 
+const maxFilesCount = 999;// Максимальное колличество файлов 
 const maxFilesSize = 50; //Общий размер файлов дропзоны в МБ
 const maxFilesSizeInBytes = maxFilesSize * 1024 * 1024; // МБ в байтах
 const formsDropzones = document.querySelectorAll('.file-input');
@@ -114,6 +115,11 @@ document.addEventListener('click', (e) => {
         const activityId = target.closest('[data-activity]').dataset.activity;
         const activityModal = document.querySelector(`[ data-activity-modal="${activityId}"]`);
         activityModal && activityModal.classList.add('show');
+    }
+    if (target.closest('[data-good-works]')) {
+        const goodWorksModal = document.querySelector('.good-deed-modal');
+        goodWorksModal.classList.add('show');
+
     }
 });
 
