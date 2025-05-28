@@ -2841,6 +2841,8 @@ body {
 
 
 .good-deed-modal {
+  overflow: auto;
+
   .activity-modal__form {
     padding-top: 0;
   }
