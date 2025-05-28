@@ -188,9 +188,6 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
         howWasHelp
     ];
 
-    console.log(fields);
-
-
     fields.forEach(field => {
         const fieldParent = field.closest('.form-label__wrapper');
         if (!field.value.trim()) {
@@ -199,9 +196,10 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
     })
 
     const data = {
-
+        personnelNumber: personnelNumber.value.trim(),
+        selectedCity: selectedCity.value.trim(),
+        howWasHelp: howWasHelp.value.trim()
     };
-
 
     const formHasError = suggestForm.querySelector('.err');
     if (formHasError) return;
