@@ -77,6 +77,8 @@ formsDropzones.forEach(fileInput => {
         `
     });
 
+    fileInput.dropzone = dropzoneInit;
+
     // Функция подсчёта общего размера всех файлов
     function getTotalSize() {
         let size = 0;
@@ -85,6 +87,7 @@ formsDropzones.forEach(fileInput => {
     }
 
     dropzoneInit.on("addedfile", function (file) {
+        fileInput.closest('.form-label__wrapper').classList.remove('err');
         // Проверка на общий размер файлов
         if (getTotalSize() > maxFilesSizeInBytes) {
             dropzoneInit.removeFile(file);
@@ -173,35 +176,48 @@ suggestForm.addEventListener('submit', (e) => {
     console.log(data);
 })
 
-
+// Обработка формы  "Рассказать о добром деле"
 const tellAboutGoodDeed = document.querySelector('#tell-about-good-deed');
-console.log(tellAboutGoodDeed);
-
 tellAboutGoodDeed.addEventListener('submit', (e) => {
     e.preventDefault();
     const personnelNumber = tellAboutGoodDeed.querySelector('[name="personnel-number"]');
     const selectedCity = tellAboutGoodDeed.querySelector('[name="event-select"]');
     const howWasHelp = tellAboutGoodDeed.querySelector('[name="how-was-help"]');
+    const fileInput = tellAboutGoodDeed.querySelector('.file-input');
     const fields = [
         personnelNumber,
         selectedCity,
         howWasHelp
     ];
+    // Смотрим и валидируем поле с файлами
+    const formDropzone = fileInput.dropzone;
+    const files = formDropzone.files;
+    if (files.length < 1) {
+        fileInput.closest('.form-label__wrapper').classList.add('err');
+    }
 
+    // Смотрим и валидируем текстовые поля и селект
     fields.forEach(field => {
         const fieldParent = field.closest('.form-label__wrapper');
         if (!field.value.trim()) {
             fieldParent.classList.add('err');
         }
-    })
+    });
+
 
     const data = {
         personnelNumber: personnelNumber.value.trim(),
         selectedCity: selectedCity.value.trim(),
-        howWasHelp: howWasHelp.value.trim()
+        howWasHelp: howWasHelp.value.trim(),
+        files
     };
+
 
     const formHasError = suggestForm.querySelector('.err');
     if (formHasError) return;
+
+    setTimeout(() => {
+        formDropzone.removeAllFiles();
+    }, 2000)
     console.log(data);
 })
