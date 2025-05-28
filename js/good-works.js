@@ -39,7 +39,14 @@ $(document).ready(function () {
         minimumResultsForSearch: -1,
         placeholder: "Выбрать активность",
     });
+
+    $('.form-select').on('select2:select', function (e) {
+        const parentWrapper = e.target.closest('.form-label__wrapper');
+        if (parentWrapper) parentWrapper.classList.remove('err');
+    });
+
 });
+
 
 
 // Инит дропзон и базовые параметры
@@ -163,7 +170,40 @@ suggestForm.addEventListener('submit', (e) => {
 
     const formHasError = suggestForm.querySelector('.err');
     if (formHasError) return;
-
     console.log(data);
+})
 
+
+const tellAboutGoodDeed = document.querySelector('#tell-about-good-deed');
+console.log(tellAboutGoodDeed);
+
+tellAboutGoodDeed.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const personnelNumber = tellAboutGoodDeed.querySelector('[name="personnel-number"]');
+    const selectedCity = tellAboutGoodDeed.querySelector('[name="event-select"]');
+    const howWasHelp = tellAboutGoodDeed.querySelector('[name="how-was-help"]');
+    const fields = [
+        personnelNumber,
+        selectedCity,
+        howWasHelp
+    ];
+
+    console.log(fields);
+
+
+    fields.forEach(field => {
+        const fieldParent = field.closest('.form-label__wrapper');
+        if (!field.value.trim()) {
+            fieldParent.classList.add('err');
+        }
+    })
+
+    const data = {
+
+    };
+
+
+    const formHasError = suggestForm.querySelector('.err');
+    if (formHasError) return;
+    console.log(data);
 })

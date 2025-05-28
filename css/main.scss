@@ -2691,6 +2691,12 @@ body {
   }
 }
 
+.err {
+  .select2-container--default .select2-selection--single {
+    border-color: red;
+  }
+}
+
 .select2-results__option {
   color: #002d74 !important;
   font-family: "Akrobat" !important;
