@@ -2323,6 +2323,28 @@ body {
   }
 }
 
+.events-map-list {
+  padding-right: pxToRem(20);
+  padding-left: pxToRem(20);
+  margin-right: pxToRem(-20);
+  margin-left: pxToRem(-20);
+
+  @media (max-width: 768px) {
+    padding-right: pxToRem(15);
+    padding-left: pxToRem(15);
+    margin-right: pxToRem(-15);
+    margin-left: pxToRem(-15);
+
+    .event-item {
+      width: 100%;
+    }
+
+    .event-item__image {
+      height: 105vw;
+    }
+  }
+}
+
 .gallery-of-reports {
   padding: pxToRem(96) 0;
 
@@ -2497,7 +2519,7 @@ body {
   padding: pxToRem(96) 0 pxToRem(120) 0;
   background-color: #f3f3f3;
   background-image: url(../img/events-form-bg.svg);
-  background-size: contain;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: right center;
 }
@@ -2882,6 +2904,60 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+}
+
+body {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+  }
+
+  &::after {
+    position: fixed;
+    left: calc(50% - pxToRem(24));
+    top: calc(50% - pxToRem(24));
+    content: '';
+    width: pxToRem(48);
+    height: pxToRem(48);
+    border: pxToRem(5) solid #FFF;
+    border-bottom-color: #FF3D00;
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+  }
+}
+
+body.sending {
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    opacity: 1;
+    visibility: visible
+  }
+}
+
+.group-main__image {
+  video {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @import "media.scss";

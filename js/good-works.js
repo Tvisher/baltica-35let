@@ -1,3 +1,9 @@
+
+const pauseAllVideoInPage = () => {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => video.pause());
+}
+
 const activitiesList = new Swiper('.activities__list', {
     slidesPerView: 'auto',
     spaceBetween: 20,
@@ -33,7 +39,63 @@ const galleryOfReports = new Swiper('.gallery-of-reports__slider', {
 });
 
 
+const albumSliderMain = new Swiper(".album-modal__slider-main", {
+    allowTouchMove: false,
+    spaceBetween: 100,
+    speed: 800,
+    navigation: {
+        nextEl: ".slider-main-button-next",
+        prevEl: ".slider-main-button-prev",
+    },
+    on: {
+        slideChangeTransitionStart() {
+            pauseAllVideoInPage()
+        }
+    }
+});
 
+const isMobileInit = window.innerWidth <= 576;
+const albumItems = document.querySelectorAll('.album-item');
+albumItems.forEach(slideItem => {
+    const mainSlider = slideItem.querySelector('.group-main');
+    const mainThumbs = slideItem.querySelector('.group-thumbs');
+    const progressBlock = slideItem.querySelector(".group-thumbs__progress")
+    const albumThumbsSlider = new Swiper(mainThumbs, {
+        touchRatio: 0.5,
+        spaceBetween: 10,
+        slidesPerView: "auto",
+        freeMode: !isMobileInit,
+        watchSlidesProgress: true,
+        mousewheel: {
+            enable: true,
+        },
+        pagination: {
+            el: progressBlock,
+            type: "progressbar",
+        },
+    });
+    const albumInnerSlider = new Swiper(mainSlider, {
+        spaceBetween: 10,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        navigation: {
+            nextEl: ".group-main-next",
+            prevEl: ".group-main-prev",
+        },
+        thumbs: {
+            swiper: albumThumbsSlider,
+        },
+        on: {
+            slideChangeTransitionStart() {
+                pauseAllVideoInPage()
+            }
+        }
+    });
+});
+
+// Инит селектов
 $(document).ready(function () {
     $('.form-select').select2({
         minimumResultsForSearch: -1,
@@ -113,25 +175,7 @@ formsDropzones.forEach(fileInput => {
 
 
 
-// Обработка кликов по странице
-document.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target.closest('.activity-modal__close') || (target.closest('.activity-modal') && !target.closest('.activity-modal__content'))) {
-        const openedModal = target.closest('.activity-modal');
-        openedModal && openedModal.classList.remove('show');
-    }
 
-    if (target.closest('[data-activity]')) {
-        const activityId = target.closest('[data-activity]').dataset.activity;
-        const activityModal = document.querySelector(`[ data-activity-modal="${activityId}"]`);
-        activityModal && activityModal.classList.add('show');
-    }
-    if (target.closest('[data-good-works]')) {
-        const goodWorksModal = document.querySelector('.good-deed-modal');
-        goodWorksModal.classList.add('show');
-
-    }
-});
 
 // Сброс ошибок в полях ввода при начале ввода в поле.
 const formInputs = document.querySelectorAll('.form-input');
@@ -142,6 +186,7 @@ formInputs.forEach(field => {
     })
 })
 
+const bodyTag = document.querySelector('body');
 
 // Обработка формы  "Предложить мероприятие"
 const suggestForm = document.querySelector('#suggest-form');
@@ -173,6 +218,7 @@ suggestForm.addEventListener('submit', (e) => {
 
     const formHasError = suggestForm.querySelector('.err');
     if (formHasError) return;
+    bodyTag.classList.add('sending');
     console.log(data);
 })
 
@@ -213,11 +259,111 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
     };
 
 
-    const formHasError = suggestForm.querySelector('.err');
+    const formHasError = tellAboutGoodDeed.querySelector('.err');
     if (formHasError) return;
+    console.log(formHasError);
 
-    setTimeout(() => {
-        formDropzone.removeAllFiles();
-    }, 2000)
+    bodyTag.classList.add('sending');
+    // formDropzone.removeAllFiles();
     console.log(data);
+});
+
+
+// Обработка формы  "Рассказать о добром деле"
+
+const eventForms = document.querySelectorAll('.current-event-form');
+eventForms.forEach(eventForm => {
+    eventForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const eventId = eventForm.getAttribute('data-event-id');
+        const personnelNumber = eventForm.querySelector('[name="personnel-number"]');
+        const activityName = eventForm.querySelector('[name="activity-name"]');
+        const selectedCity = eventForm.querySelector('[name="activity-city"]');
+        const howWasHelp = eventForm.querySelector('[name="how-was-help"]');
+        const fileInput = eventForm.querySelector('.file-input');
+
+        const fields = [
+            personnelNumber,
+            selectedCity,
+            howWasHelp,
+            activityName
+        ];
+
+
+        // Смотрим и валидируем поле с файлами
+        const formDropzone = fileInput.dropzone;
+        const files = formDropzone.files;
+        if (files.length < 1) {
+            fileInput.closest('.form-label__wrapper').classList.add('err');
+        }
+
+        // Смотрим и валидируем текстовые поля и селект
+        fields.forEach(field => {
+            const fieldParent = field.closest('.form-label__wrapper');
+            if (!field.value.trim()) {
+                fieldParent.classList.add('err');
+            }
+        });
+
+
+        const data = {
+            personnelNumber: personnelNumber.value.trim(),
+            selectedCity: selectedCity.value.trim(),
+            howWasHelp: howWasHelp.value.trim(),
+            activityName: activityName.value.trim(),
+            eventId,
+            files
+        };
+
+
+        const formHasError = eventForm.querySelector('.err');
+        if (formHasError) return;
+        bodyTag.classList.add('sending');
+        // formDropzone.removeAllFiles();
+        console.log(data);
+    })
 })
+
+
+
+const albumModal = document.querySelector('.album-modal');
+
+// Обработка кликов по странице
+document.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target.closest('.activity-modal__close') || (target.closest('.activity-modal') && !target.closest('.activity-modal__content'))) {
+        const openedModal = target.closest('.activity-modal');
+        openedModal && openedModal.classList.remove('show');
+        return;
+    }
+
+    if (target.closest('[data-activity]')) {
+        const activityId = target.closest('[data-activity]').dataset.activity;
+        const activityModal = document.querySelector(`[ data-activity-modal="${activityId}"]`);
+        const activityModalBody = activityModal.querySelector('.activity-modal__body');
+        activityModalBody.scrollTop = 0;
+        activityModal && activityModal.classList.add('show');
+        return;
+    }
+    if (target.closest('[data-good-works]')) {
+        const goodWorksModal = document.querySelector('.good-deed-modal');
+        goodWorksModal.classList.add('show');
+        return;
+    }
+    if ((target.closest('.album-modal') && !target.closest('.album-modal__content')) || target.closest('.album-modal__close')) {
+        const openedAlbumModal = document.querySelector('.album-modal.show');
+        openedAlbumModal && openedAlbumModal.classList.remove('show');
+        pauseAllVideoInPage();
+        return;
+    }
+
+    if (target.closest('[data-report-id]')) {
+        const reportId = target.closest('[data-report-id]').dataset.reportId;
+        const currentSlide = albumSliderMain.slides.findIndex((slide) => {
+            return slide.dataset.reportSliderId == reportId;
+        });
+        albumSliderMain.slideTo(currentSlide, 0);
+        albumModal.classList.add('show');
+    }
+
+});
