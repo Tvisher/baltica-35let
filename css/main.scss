@@ -1280,7 +1280,7 @@ body {
   height: 100%;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(pxToRem(5));
-  z-index: 999;
+  z-index: 200;
   padding: pxToRem(20) pxToRem(30);
   opacity: 0;
   visibility: hidden;
@@ -1931,6 +1931,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+
+  &:nth-of-type(1) {
+    animation: fromBottom .6s ease-in-out forwards .2s;
+  }
+
+  &:nth-of-type(2) {
+    animation: fromBottom .6s ease-in-out forwards .4s;
+  }
+
+  &:nth-of-type(3) {
+    animation: fromBottom .6s ease-in-out forwards .8s;
+  }
 }
 
 .counter-num {
@@ -1950,6 +1963,18 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes fromBottom {
+  0% {
+    transform: translateY(pxToRem(20));
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }
 
 .counter__descr {
@@ -2917,7 +2942,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.4);
-    z-index: 100;
+    z-index: 998;
     opacity: 0;
     visibility: hidden;
     transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
@@ -2930,8 +2955,8 @@ body {
     content: '';
     width: pxToRem(48);
     height: pxToRem(48);
-    border: pxToRem(5) solid #FFF;
-    border-bottom-color: #FF3D00;
+    border: pxToRem(5) solid #002d74;
+    border-bottom-color: #cc985d;
     border-radius: 50%;
     display: block;
     box-sizing: border-box;

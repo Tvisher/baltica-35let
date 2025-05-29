@@ -2590,7 +2590,7 @@
       }
       $.ajax({
         type: 'POST',
-        url: 'someUrl',
+        url: '/ajax/auth.php',
         dataType: 'json',
         data: {
           personnelNumber: personnelNumberValue
@@ -2609,7 +2609,6 @@
           // Eсли ошибка, выводим ошибку
           errField.innerHTML = "Что то пошло не так, попробуйте позднее";
           authModalField.classList.add('err');
-
         }
       });
     });
