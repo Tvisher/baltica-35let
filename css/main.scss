@@ -3063,6 +3063,8 @@ body.sending {
       width: pxToRem(90);
       height: pxToRem(90);
       backdrop-filter: blur(5px);
+      border-radius: pxToRem(10);
+      overflow: hidden;
     }
   }
 
