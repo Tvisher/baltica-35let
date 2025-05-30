@@ -11,7 +11,9 @@
   <link rel="preload" href="./fonts/Verdana-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="preload" href="./fonts/Verdana-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./css/fancybox.css" />
   <link rel="stylesheet" href="./css/main.min.css?v=1" />
+
 </head>
 <!-- not-auth тегу body если юзер не авторизован -->
 
@@ -1389,6 +1391,64 @@
         </div>
       </div>
     </section>
+    <section class="video-section">
+      <div class="container">
+        <h2 class="section-title">Видеоархив</h2>
+        <div class="activities__list swiper">
+          <div class="swiper-wrapper">
+            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+
+            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+
+            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+
+            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination _sliders-pagination"></div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer">
     <div class="container">
@@ -2615,6 +2675,7 @@
   </script>
 
   <script src="./js/swiper-bundle.min.js"></script>
+  <script src="./js/fancybox.umd.js"></script>
   <script src="./js/app.js"></script>
   <script src="./js/main.js"></script>
 

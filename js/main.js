@@ -308,3 +308,8 @@ document.addEventListener('click', (e) => {
         mobMenu.classList.remove('show');
     }
 })
+
+
+
+Fancybox.bind("[data-fancybox]", {
+});
