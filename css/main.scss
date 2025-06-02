@@ -1177,31 +1177,46 @@ body {
   }
 }
 
-.footer__wrapper {
-  padding-top: pxToRem(50);
-}
+.footer__logo {
+  width: pxToRem(300);
+  height: pxToRem(235);
 
-.footer__top {
-  display: flex;
-  justify-content: space-between;
-  gap: pxToRem(30);
-  margin-bottom: pxToRem(40);
-}
-
-.footer__title {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  font-size: pxToRem(40);
-  font-style: normal;
-  font-weight: 800;
-  line-height: 100%;
-  text-transform: uppercase;
-
-  br {
-    display: none;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
   }
 }
+
+.footer__wrapper {
+  padding-top: pxToRem(50);
+  display: flex;
+  // justify-content: space-between;
+  gap: pxToRem(56);
+}
+
+// .footer__top {
+//   display: flex;
+//   justify-content: space-between;
+//   gap: pxToRem(30);
+//   margin-bottom: pxToRem(40);
+// }
+
+// .footer__title {
+//   display: flex;
+//   align-items: center;
+//   color: #fff;
+//   font-size: pxToRem(40);
+//   font-style: normal;
+//   font-weight: 800;
+//   line-height: 100%;
+//   text-transform: uppercase;
+
+//   br {
+//     display: none;
+//   }
+// }
 
 .footer__socials {
   display: flex;
@@ -1212,6 +1227,7 @@ body {
 .social-item {
   width: pxToRem(30);
   height: pxToRem(30);
+  flex-shrink: 0;
 
   svg {
     width: 100%;
@@ -1229,6 +1245,7 @@ body {
   font-weight: 600;
   line-height: 120%;
   margin-left: pxToRem(44);
+  flex-shrink: 0;
 }
 
 .footer__links {
@@ -1236,6 +1253,7 @@ body {
   flex-direction: column;
   gap: pxToRem(15);
   text-align: right;
+  margin-top: auto;
 
   a {
     color: #fff;
@@ -1248,10 +1266,18 @@ body {
   }
 }
 
-.footer__bottom {
+// .footer__bottom {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: flex-end;
+// }
+.footer__coll {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+
+  &:last-child {
+    margin-left: auto;
+  }
 }
 
 .footer__info {
@@ -1264,6 +1290,7 @@ body {
   font-style: normal;
   font-weight: 700;
   line-height: 140%;
+  padding-top: pxToRem(20);
 
   a {
     font-weight: 400;
