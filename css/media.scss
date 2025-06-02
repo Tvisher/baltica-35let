@@ -72,6 +72,24 @@
         max-width: initial;
     }
 
+    .counter__item {
+        width: pxToRem(170);
+        height: pxToRem(260);
+    }
+
+    .counter-num {
+        font-size: pxToRem(210);
+    }
+
+    .counter__descr {
+        font-size: pxToRem(60);
+    }
+
+    .good-works-counter,
+    .counter__wrapper,
+    .counter-progress {
+        margin-bottom: pxToRem(40);
+    }
 }
 
 @media (max-width: 1280px) {
@@ -111,9 +129,9 @@
         flex-wrap: wrap;
     }
 
-    .footer {
-        // background-image: url(../img/footer-bg-mob.svg);
-    }
+    // .footer {
+    //     // background-image: url(../img/footer-bg-mob.svg);
+    // }
 
     .footer__links {
         text-align: center;
@@ -165,6 +183,8 @@
     html {
         font-size: 16px;
     }
+
+
 
     .history {
         padding-top: pxToRem(30);
@@ -478,7 +498,11 @@
 
     .activities,
     .album-section,
-    .video-section {
+    .video-section,
+    .text-section,
+    .suggest-event,
+    .events-map,
+    .gallery-of-reports {
         padding: pxToRem(45) 0;
     }
 
@@ -533,4 +557,162 @@
     .message-form__text {
         font-size: 22px;
     }
+
+    .report-slide {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .report-slide__image {
+        height: 100vw;
+    }
+
+    .report-slide__content {
+        width: 100%;
+    }
+
+    .suggest-event__form {
+        padding-left: 0;
+    }
+
+    .text-section__text {
+        font-size: pxToRem(16);
+    }
+
+    .form-wrapper {
+        gap: pxToRem(20);
+    }
+
+    .form-wrapper {
+        margin-bottom: pxToRem(30);
+    }
+
+    .label-ico,
+    .form-wrapper::before {
+        display: none;
+    }
+
+    .activity-modal__body {
+        padding: pxToRem(20) !important;
+    }
+
+    .period-modal__content,
+    .activity-modal__content {
+        padding-bottom: pxToRem(20);
+    }
+
+    .activity-modal__name {
+        font-size: pxToRem(30);
+    }
+
+    .activity-modal__head {
+        padding-top: pxToRem(20);
+    }
+
+    .form-label textarea.form-input {
+        height: pxToRem(150);
+    }
+
+    .file-input {
+        min-height: pxToRem(150);
+    }
+
+    .activity-modal__form {
+        padding-top: pxToRem(20);
+    }
+
+    .period-modal,
+    .activity-modal {
+        padding: pxToRem(20);
+    }
+
+    // .activity-modal__content {
+    // height: 100dvh !important;
+    // }
+
+    .counter__item {
+        width: 100%;
+        height: auto;
+        padding-top: pxToRem(30);
+        padding-bottom: pxToRem(30);
+    }
+
+    .counter__descr {
+        font-size: pxToRem(42);
+    }
+
+    .counter-progress {
+        padding: pxToRem(10);
+    }
+
+    .counter__item-w {
+        width: calc(33.33% - pxToRem(15));
+    }
+
+    .counter-num {
+        font-size: 32vw;
+    }
+
+    .activity-modal__body {
+        padding: pxToRem(20) !important;
+
+        .modal-section__images {
+            margin-bottom: pxToRem(20);
+        }
+
+        .modal-section__title {
+            margin-bottom: pxToRem(20);
+        }
+    }
+
+    .activity-modal__head {
+        padding: pxToRem(20) !important;
+        padding-bottom: pxToRem(20) !important;
+    }
+
+    .form-label .form-input,
+    .form-label .select2-selection__rendered,
+    .select2-results__option {
+        padding-right: pxToRem(10) !important;
+        padding-left: pxToRem(10) !important;
+    }
+
+    .form-label .select2-selection__rendered {
+        padding-right: pxToRem(30) !important;
+    }
+
+    .form-label span {
+        font-size: pxToRem(14);
+    }
+
+    .select2-selection__arrow {
+        right: pxToRem(15) !important;
+    }
+
+    .activity-modal__content {
+        // height: auto !important;
+    }
+
+    .good-works-header {
+        min-height: 100vh;
+    }
+
+    .good-works__btn {
+        width: 100%;
+
+        .good-works__btn-text {
+            font-size: pxToRem(20);
+            text-align: center;
+
+        }
+    }
+
+    .counter-progress__bg {
+        height: pxToRem(30);
+    }
+
+    .counter-progress__num {
+        font-size: pxToRem(18);
+    }
+
 }

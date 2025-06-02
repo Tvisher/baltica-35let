@@ -29,13 +29,18 @@ const eventsList = new Swiper('.events-map-list', {
 
 
 const galleryOfReports = new Swiper('.gallery-of-reports__slider', {
-    slidesPerView: 2,
+    slidesPerView: 1,
     spaceBetween: 32,
     pagination: {
         el: '.swiper-pagination',
         type: "bullets",
         clickable: 1,
     },
+    breakpoints: {
+        992: {
+            slidesPerView: 2,
+        },
+    }
 });
 
 
