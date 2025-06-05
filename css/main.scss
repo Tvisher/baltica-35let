@@ -2590,11 +2590,31 @@ body {
 
 .suggest-event {
   padding: pxToRem(96) 0 pxToRem(120) 0;
-  background-color: #f3f3f3;
-  background-image: url(../img/events-form-bg.svg);
+  background: url(../img/events-form-bg.svg), linear-gradient(110deg, #0040A4 0%, #002D74 100%);
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: right center;
+
+  .form-label span,
+  .section-title {
+    color: #fff;
+  }
+
+  .label-ico {
+    background: #0040A4;
+  }
+
+  .form-label .form-input:not(:placeholder-shown)+.label-ico {
+    border-color: #E8C08F;
+  }
+
+  .label-ico::before {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M1 4L4.33333 7L11 1' stroke='%23E8C08F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e ");
+  }
+
+  .form-label .form-input[readonly] {
+    background-color: #ACB8CA;
+  }
 }
 
 .form-wrapper {
@@ -2609,7 +2629,7 @@ body {
     left: 0;
     top: pxToRem(48);
     // height: calc(100% - pxToRem(78));
-    height: pxToRem(500);
+    height: pxToRem(610);
     width: 2px;
     content: "";
     background-color: #c8c8c8;
@@ -2686,9 +2706,13 @@ body {
   position: relative;
   line-height: 133.333%;
 
+  &>span {
+    display: block;
+  }
 
 
   span {
+
     color: #90959f;
     font-family: "Verdana";
     font-size: pxToRem(18);
@@ -2737,7 +2761,7 @@ body {
     }
   }
 
-  .select2-container+.label-ico,
+  .select2-container--below+.label-ico,
   .dz-started+.label-ico {
     border-color: #BE8239;
 
@@ -2949,15 +2973,35 @@ body {
   }
 
   .activity-modal__body {
-    padding-right: pxToRem(48);
+    // padding-right: pxToRem(48);
+    padding: pxToRem(48) pxToRem(40) 0px pxToRem(40);
   }
 
   .suggest-event__form {
     max-width: inherit;
   }
 
-  .form-wrapper::before {
-    height: pxToRem(520);
+  .form-wrapper {
+    gap: 0 !important;
+
+    // &::before {
+    //   height: pxToRem(520);
+    // }
+    &::before {
+      display: none;
+    }
+  }
+
+  .suggest-event__form {
+    padding-left: 0;
+  }
+
+  .form-label {
+    margin-bottom: pxToRem(30);
+  }
+
+  .label-ico {
+    display: none;
   }
 }
 
@@ -3109,6 +3153,14 @@ body.sending {
     background-size: cover;
     background-position: center;
   }
+}
+
+.hidden-field {
+  display: none;
+}
+
+.dropdown-wrapper {
+  display: none;
 }
 
 @import "media.scss";

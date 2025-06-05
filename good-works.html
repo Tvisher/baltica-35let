@@ -87,8 +87,8 @@
                         <div class="counter-progress__num">35</div>
                     </div>
                 </div>
-                <div class="good-works__btn">
-                    <div class="good-works__btn-text" data-good-works>Рассказать о добром деле</div>
+                <div class="good-works__btn" data-good-works>
+                    <div class="good-works__btn-text">Рассказать о добром деле</div>
                 </div>
             </div>
         </div>
@@ -193,14 +193,15 @@
                         </label>
 
                         <label class="form-label">
-                            <span>Выберите город</span>
+                            <span>Укажите город</span>
                             <div class="form-label__wrapper">
-                                <select name="city" class="form-select">
+                                <input type="text" class="form-input" value="" placeholder="" name="city">
+                                <!-- <select name="city" class="form-select">
                                     <option value="Москва">Москва</option>
                                     <option value="Новосибирск">Новосибирск</option>
                                     <option value="Омск">Омск</option>
                                     <option value="Санкт-Петербург">Санкт-Петербург</option>
-                                </select>
+                                </select> -->
                                 <div class="label-ico"></div>
                             </div>
                         </label>
@@ -223,6 +224,14 @@
                             <span>Как помочь</span>
                             <div class="form-label__wrapper">
                                 <input type="text" class="form-input" value="" placeholder="" name="how-to-help">
+                                <div class="label-ico"></div>
+                            </div>
+                        </label>
+
+                        <label class="form-label">
+                            <span>Ссылка на соцсеть или мессенджер</span>
+                            <div class="form-label__wrapper">
+                                <input type="text" class="form-input" value="" placeholder="" name="social-link">
                                 <div class="label-ico"></div>
                             </div>
                         </label>
@@ -1234,11 +1243,20 @@
                                 <div class="form-label__wrapper">
                                     <select name="event-select" class="form-select">
                                         <option></option>
-                                        <option value="1">Какая то активность (Москва)</option>
-                                        <option value="2">Какая то активность 2 (Новосибирск)</option>
-                                        <option value="3">Какая то активность 3 (Омск)</option>
-                                        <option value="4">Какая то активность 4 (Санкт-Петербург)</option>
+                                        <option value="other">Другое</option>
+
+                                        <option value="Активность 1">Какая то активность (Москва)</option>
+                                        <option value="Активность 2">Какая то активность 2 (Новосибирск)</option>
+                                        <option value="Активность 3">Какая то активность 3 (Омск)</option>
+                                        <option value="Активность 4">Какая то активность 4 (Санкт-Петербург)</option>
                                     </select>
+                                    <div class="label-ico"></div>
+                                </div>
+                            </label>
+                            <label class="form-label hidden-field">
+                                <span>Укажите город</span>
+                                <div class="form-label__wrapper">
+                                    <input type="text" class="form-input" name="custom-city" placeholder="" value="">
                                     <div class="label-ico"></div>
                                 </div>
                             </label>

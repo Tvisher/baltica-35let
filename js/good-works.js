@@ -110,6 +110,20 @@ $(document).ready(function () {
     $('.form-select').on('select2:select', function (e) {
         const parentWrapper = e.target.closest('.form-label__wrapper');
         if (parentWrapper) parentWrapper.classList.remove('err');
+
+        const parentForm = e.target.closest('#tell-about-good-deed');
+        if (parentForm) {
+            const hiddenField = parentForm.querySelector('.hidden-field');
+            if (e.target.value == 'other') {
+                $(hiddenField).slideDown();
+
+            } else {
+                $(hiddenField).slideUp();
+                hiddenField.querySelector('.form-label__wrapper').classList.remove('err');
+            }
+        }
+
+
     });
 
 });
@@ -193,19 +207,24 @@ formInputs.forEach(field => {
 
 const bodyTag = document.querySelector('body');
 
+
+
 // Обработка формы  "Предложить мероприятие"
 const suggestForm = document.querySelector('#suggest-form');
 suggestForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const selectedCity = suggestForm.querySelector('.form-select');
+    const selectedCity = suggestForm.querySelector('[name="city"]');
     const membersCount = suggestForm.querySelector('[name="members-count"]');
     const whoToHelp = suggestForm.querySelector('[name="who-to-help"]');
     const howToHelp = suggestForm.querySelector('[name="how-to-help"]');
+    const socialLink = suggestForm.querySelector('[name="social-link"]');
     const fields = [
         selectedCity,
         membersCount,
         whoToHelp,
-        howToHelp];
+        howToHelp,
+        socialLink
+    ];
     fields.forEach(field => {
         const fieldParent = field.closest('.form-label__wrapper');
         if (!field.value.trim()) {
@@ -217,7 +236,8 @@ suggestForm.addEventListener('submit', (e) => {
         selectedCity: selectedCity.value.trim(),
         membersCount: membersCount.value.trim(),
         whoToHelp: whoToHelp.value.trim(),
-        howToHelp: howToHelp.value.trim()
+        howToHelp: howToHelp.value.trim(),
+        socialLink: socialLink.value.trim()
     };
 
 
@@ -232,13 +252,15 @@ const tellAboutGoodDeed = document.querySelector('#tell-about-good-deed');
 tellAboutGoodDeed.addEventListener('submit', (e) => {
     e.preventDefault();
     const personnelNumber = tellAboutGoodDeed.querySelector('[name="personnel-number"]');
-    const selectedCity = tellAboutGoodDeed.querySelector('[name="event-select"]');
+    const selectedEvent = tellAboutGoodDeed.querySelector('[name="event-select"]');
     const howWasHelp = tellAboutGoodDeed.querySelector('[name="how-was-help"]');
+    const customCity = tellAboutGoodDeed.querySelector('[name="custom-city"]');
     const fileInput = tellAboutGoodDeed.querySelector('.file-input');
     const fields = [
         personnelNumber,
-        selectedCity,
-        howWasHelp
+        selectedEvent,
+        howWasHelp,
+        customCity
     ];
     // Смотрим и валидируем поле с файлами
     const formDropzone = fileInput.dropzone;
@@ -250,6 +272,10 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
     // Смотрим и валидируем текстовые поля и селект
     fields.forEach(field => {
         const fieldParent = field.closest('.form-label__wrapper');
+        if (field.name == 'custom-city' && selectedEvent.value !== 'other') {
+            return;
+        }
+
         if (!field.value.trim()) {
             fieldParent.classList.add('err');
         }
@@ -258,19 +284,29 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
 
     const data = {
         personnelNumber: personnelNumber.value.trim(),
-        selectedCity: selectedCity.value.trim(),
+        selectedEvent: selectedEvent.value.trim(),
         howWasHelp: howWasHelp.value.trim(),
+        customCity: selectedEvent.value == 'other' ? customCity.value.trim() : null,
         files
     };
 
 
     const formHasError = tellAboutGoodDeed.querySelector('.err');
     if (formHasError) return;
-    console.log(formHasError);
 
     bodyTag.classList.add('sending');
-    // formDropzone.removeAllFiles();
     console.log(data);
+
+    // Тут аякс и то что в setTimeout нужно будет сделать в succes
+    setTimeout(() => {
+        bodyTag.classList.remove('sending');
+        $(selectedEvent).val(null).trigger('change');
+        tellAboutGoodDeed.reset();
+        const customCityWrapper = customCity.closest('.hidden-field');
+        $(customCityWrapper).slideUp();
+        formDropzone.removeAllFiles();
+    }, 2000);
+
 });
 
 
