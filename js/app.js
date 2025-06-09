@@ -21,7 +21,7 @@ document.addEventListener('click', (e) => {
     }
 
     if ((target.closest('.message-modal') && !target.closest('.auth-modal__content')) || target.closest('[data-close-modal]')) {
-        messageModal.classList.remove('show');
+        target.closest('.message-modal').classList.remove('show');
     }
 });
 

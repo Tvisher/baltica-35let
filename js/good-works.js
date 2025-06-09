@@ -1,4 +1,5 @@
 const userId = document.querySelector('body').getAttribute('data-user-id');
+const responceModal = document.querySelector('[data-responce-modal]');
 
 const pauseAllVideoInPage = () => {
     const videos = document.querySelectorAll('video');
@@ -246,6 +247,12 @@ suggestForm.addEventListener('submit', (e) => {
     const formHasError = suggestForm.querySelector('.err');
     if (formHasError) return;
     bodyTag.classList.add('sending');
+
+    setTimeout(() => {
+        suggestForm.reset();
+        bodyTag.classList.remove('sending');
+        responceModal.classList.add('show');
+    }, 2000)
     console.log(data);
 })
 
@@ -253,12 +260,13 @@ suggestForm.addEventListener('submit', (e) => {
 const tellAboutGoodDeed = document.querySelector('#tell-about-good-deed');
 tellAboutGoodDeed.addEventListener('submit', (e) => {
     e.preventDefault();
+    const formParentModal = tellAboutGoodDeed.closest('.good-deed-modal');
+
     const selectedEvent = tellAboutGoodDeed.querySelector('[name="event-select"]');
     const howWasHelp = tellAboutGoodDeed.querySelector('[name="how-was-help"]');
     const customCity = tellAboutGoodDeed.querySelector('[name="custom-city"]');
     const fileInput = tellAboutGoodDeed.querySelector('.file-input');
     const fields = [
-        personnelNumber,
         selectedEvent,
         howWasHelp,
         customCity
@@ -284,7 +292,6 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
 
 
     const data = {
-        personnelNumber: personnelNumber.value.trim(),
         selectedEvent: selectedEvent.value.trim(),
         howWasHelp: howWasHelp.value.trim(),
         customCity: selectedEvent.value == 'other' ? customCity.value.trim() : null,
@@ -307,6 +314,8 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
         const customCityWrapper = customCity.closest('.hidden-field');
         $(customCityWrapper).slideUp();
         formDropzone.removeAllFiles();
+        formParentModal.classList.remove('show');
+        responceModal.classList.add('show')
     }, 2000);
 
 });
@@ -318,6 +327,9 @@ const eventForms = document.querySelectorAll('.current-event-form');
 eventForms.forEach(eventForm => {
     eventForm.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        const formParentModal = eventForm.closest('.activity-modal');
+
         const eventId = eventForm.getAttribute('data-event-id');
         const activityName = eventForm.querySelector('[name="activity-name"]');
         const selectedCity = eventForm.querySelector('[name="activity-city"]');
@@ -348,7 +360,6 @@ eventForms.forEach(eventForm => {
 
 
         const data = {
-            personnelNumber: personnelNumber.value.trim(),
             selectedCity: selectedCity.value.trim(),
             howWasHelp: howWasHelp.value.trim(),
             activityName: activityName.value.trim(),
@@ -361,7 +372,14 @@ eventForms.forEach(eventForm => {
         const formHasError = eventForm.querySelector('.err');
         if (formHasError) return;
         bodyTag.classList.add('sending');
-        // formDropzone.removeAllFiles();
+
+        setTimeout(() => {
+            bodyTag.classList.remove('sending');
+            formParentModal.classList.remove('show');
+            eventForm.reset();
+            formDropzone.removeAllFiles();
+            responceModal.classList.add('show');
+        }, 2000)
         console.log(data);
     })
 });
@@ -419,4 +437,5 @@ document.addEventListener('click', (e) => {
         const currentTab = document.querySelector(`.events-map-list[data-tab="${tabName}"]`);
         currentTab && currentTab.classList.add('show');
     }
+
 });
