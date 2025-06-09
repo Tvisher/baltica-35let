@@ -2284,6 +2284,7 @@ body {
 .event-item__image {
   height: pxToRem(440);
   width: 100%;
+  position: relative;
 
   img {
     width: 100%;
@@ -2292,6 +2293,22 @@ body {
     object-position: center;
   }
 }
+
+.event-item__plate {
+  top: pxToRem(16);
+  left: pxToRem(16);
+  position: absolute;
+  padding: pxToRem(7) pxToRem(12);
+  color: #FFF;
+  font-family: 'Akrobat';
+  font-size: pxToRem(18);
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: pxToRem(20);
+  background: #0034AC;
+}
+
 
 .event-item__footer-content {
   display: flex;
@@ -2394,11 +2411,71 @@ body {
   }
 }
 
+.events-map__tabs {
+  display: flex;
+  gap: pxToRem(20);
+  margin-bottom: pxToRem(48);
+}
+
+.events-map__tab-btn {
+  text-align: center;
+  width: pxToRem(220);
+  border-radius: pxToRem(10);
+  background: linear-gradient(132deg, #D4DCE9 0%, #E6E5D0 100%);
+  color: #002D74;
+  font-family: 'Akrobat';
+  font-size: pxToRem(28);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 114%;
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    z-index: -1;
+    transform: translateY(pxToRem(5));
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border-radius: pxToRem(10);
+    content: '';
+    border-radius: pxToRem(10);
+    background: linear-gradient(90deg, #CC985D 0%, #EED2A3 20%, #E3C59A 40%, #C68E54 60%, #DAA155 80%, #BE8239 100%);
+  }
+
+  span {
+    border-radius: pxToRem(10);
+    display: block;
+    padding: pxToRem(17);
+    background-color: transparent;
+    transition: background-color .2s ease-in-out;
+  }
+
+  &.active {
+    span {
+      background-color: #fff;
+    }
+  }
+
+  @media (max-width: 576px) {
+    width: calc(50% - pxToRem(10));
+    font-size: pxToRem(22);
+  }
+}
+
 .events-map-list {
   padding-right: pxToRem(20);
   padding-left: pxToRem(20);
   margin-right: pxToRem(-20);
   margin-left: pxToRem(-20);
+  display: none;
+
+  &.show {
+    display: block;
+    animation: fromOpacity .8s ease-in-out forwards;
+  }
 
   @media (max-width: 768px) {
     padding-right: pxToRem(15);
@@ -2586,6 +2663,17 @@ body {
       #c68e54 60%,
       #daa155 80%,
       #be8239 100%);
+
+  &.set-request-btn {
+    max-width: pxToRem(600);
+    margin-top: pxToRem(72);
+    margin-bottom: pxToRem(30);
+
+    @media (max-width: 576px) {
+      margin-top: pxToRem(30);
+      margin-bottom: pxToRem(30);
+    }
+  }
 }
 
 .suggest-event {

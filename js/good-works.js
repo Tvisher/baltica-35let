@@ -1,3 +1,4 @@
+const userId = document.querySelector('body').getAttribute('data-user-id');
 
 const pauseAllVideoInPage = () => {
     const videos = document.querySelectorAll('video');
@@ -237,7 +238,8 @@ suggestForm.addEventListener('submit', (e) => {
         membersCount: membersCount.value.trim(),
         whoToHelp: whoToHelp.value.trim(),
         howToHelp: howToHelp.value.trim(),
-        socialLink: socialLink.value.trim()
+        socialLink: socialLink.value.trim(),
+        userId,
     };
 
 
@@ -251,7 +253,6 @@ suggestForm.addEventListener('submit', (e) => {
 const tellAboutGoodDeed = document.querySelector('#tell-about-good-deed');
 tellAboutGoodDeed.addEventListener('submit', (e) => {
     e.preventDefault();
-    const personnelNumber = tellAboutGoodDeed.querySelector('[name="personnel-number"]');
     const selectedEvent = tellAboutGoodDeed.querySelector('[name="event-select"]');
     const howWasHelp = tellAboutGoodDeed.querySelector('[name="how-was-help"]');
     const customCity = tellAboutGoodDeed.querySelector('[name="custom-city"]');
@@ -287,6 +288,7 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
         selectedEvent: selectedEvent.value.trim(),
         howWasHelp: howWasHelp.value.trim(),
         customCity: selectedEvent.value == 'other' ? customCity.value.trim() : null,
+        userId,
         files
     };
 
@@ -317,14 +319,12 @@ eventForms.forEach(eventForm => {
     eventForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const eventId = eventForm.getAttribute('data-event-id');
-        const personnelNumber = eventForm.querySelector('[name="personnel-number"]');
         const activityName = eventForm.querySelector('[name="activity-name"]');
         const selectedCity = eventForm.querySelector('[name="activity-city"]');
         const howWasHelp = eventForm.querySelector('[name="how-was-help"]');
         const fileInput = eventForm.querySelector('.file-input');
 
         const fields = [
-            personnelNumber,
             selectedCity,
             howWasHelp,
             activityName
@@ -353,6 +353,7 @@ eventForms.forEach(eventForm => {
             howWasHelp: howWasHelp.value.trim(),
             activityName: activityName.value.trim(),
             eventId,
+            userId,
             files
         };
 
@@ -406,5 +407,17 @@ document.addEventListener('click', (e) => {
         albumSliderMain.slideTo(currentSlide, 0);
         albumModal.classList.add('show');
     }
+    if (target.closest('.events-map__tab-btn')) {
+        const currentBtn = target.closest('.events-map__tab-btn');
+        const tabName = currentBtn.getAttribute('data-tab-name');
+        const prevActiveTabBtn = document.querySelector('.events-map__tab-btn.active');
+        prevActiveTabBtn && prevActiveTabBtn.classList.remove('active');
+        currentBtn.classList.add('active');
 
+        const prevActiveTab = document.querySelector('.events-map-list.show');
+        prevActiveTab && prevActiveTab.classList.remove('show');
+        const currentTab = document.querySelector(`.events-map-list[data-tab="${tabName}"]`);
+        currentTab && currentTab.classList.add('show');
+
+    }
 });
