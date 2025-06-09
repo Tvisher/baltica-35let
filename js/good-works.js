@@ -385,6 +385,26 @@ eventForms.forEach(eventForm => {
 });
 
 
+document.addEventListener('click', (e) => {
+    const eventBtn = e.target.closest('.set-request-btn');
+
+    if (!eventBtn) return;
+    const parentModal = eventBtn.closest('.activity-modal');
+    const data = {
+        eventId: eventBtn.getAttribute('data-activity-id'),
+        userId
+    }
+
+    bodyTag.classList.add('sending');
+
+    setTimeout(() => {
+        bodyTag.classList.remove('sending');
+        parentModal.classList.remove('show');
+        responceModal.classList.add('show');
+    }, 2000)
+    console.log(data);
+})
+
 
 const albumModal = document.querySelector('.album-modal');
 
