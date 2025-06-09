@@ -312,7 +312,7 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
 });
 
 
-// Обработка формы  "Рассказать о добром деле"
+// Обработка форм из модальных окон мероприятий
 
 const eventForms = document.querySelectorAll('.current-event-form');
 eventForms.forEach(eventForm => {
@@ -364,7 +364,7 @@ eventForms.forEach(eventForm => {
         // formDropzone.removeAllFiles();
         console.log(data);
     })
-})
+});
 
 
 
@@ -418,6 +418,5 @@ document.addEventListener('click', (e) => {
         prevActiveTab && prevActiveTab.classList.remove('show');
         const currentTab = document.querySelector(`.events-map-list[data-tab="${tabName}"]`);
         currentTab && currentTab.classList.add('show');
-
     }
 });
