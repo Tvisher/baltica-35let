@@ -246,14 +246,41 @@ suggestForm.addEventListener('submit', (e) => {
 
     const formHasError = suggestForm.querySelector('.err');
     if (formHasError) return;
-    bodyTag.classList.add('sending');
 
-    setTimeout(() => {
-        suggestForm.reset();
-        bodyTag.classList.remove('sending');
-        responceModal.classList.add('show');
-    }, 2000)
-    console.log(data);
+    const formData = new FormData();
+    formData.append('selectedCity', data.selectedCity);
+    formData.append('membersCount', data.membersCount);
+    formData.append('whoToHelp', data.whoToHelp);
+    formData.append('howToHelp', data.howToHelp);
+    formData.append('socialLink', data.socialLink);
+    formData.append('userId', userId);
+
+
+    bodyTag.classList.add('sending');
+    $.ajax({
+        url: 'Предложить мероприятие',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log(response);
+
+            suggestForm.reset();
+            bodyTag.classList.remove('sending');
+            responceModal.classList.add('show');
+
+        },
+        error: function (xhr, status, error) {
+            // Обработка ошибки
+            console.log(xhr, status, error);
+        }
+    });
+    // setTimeout(() => {
+    //     suggestForm.reset();
+    //     bodyTag.classList.remove('sending');
+    //     responceModal.classList.add('show');
+    // }, 2000)
 })
 
 // Обработка формы  "Рассказать о добром деле"
@@ -295,7 +322,6 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
         selectedEvent: selectedEvent.value.trim(),
         howWasHelp: howWasHelp.value.trim(),
         customCity: selectedEvent.value == 'other' ? customCity.value.trim() : null,
-        userId,
         files
     };
 
@@ -303,20 +329,51 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
     const formHasError = tellAboutGoodDeed.querySelector('.err');
     if (formHasError) return;
 
-    bodyTag.classList.add('sending');
-    console.log(data);
+    const formData = new FormData();
+    formData.append('selectedEvent', data.selectedEvent);
+    formData.append('howWasHelp', data.howWasHelp);
+    formData.append('customCity', data.customCity);
+    formData.append('userId', userId);
+    data.files.forEach(file => {
+        formData.append('files[]', file, file.name);
+    });
 
+    bodyTag.classList.add('sending');
+
+    $.ajax({
+        url: 'Рассказать о добром деле',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log(response);
+            bodyTag.classList.remove('sending');
+            $(selectedEvent).val(null).trigger('change');
+            tellAboutGoodDeed.reset();
+            const customCityWrapper = customCity.closest('.hidden-field');
+            $(customCityWrapper).slideUp();
+            formDropzone.removeAllFiles();
+            formParentModal.classList.remove('show');
+            responceModal.classList.add('show')
+
+        },
+        error: function (xhr, status, error) {
+            // Обработка ошибки
+            console.log(xhr, status, error);
+        }
+    });
     // Тут аякс и то что в setTimeout нужно будет сделать в succes
-    setTimeout(() => {
-        bodyTag.classList.remove('sending');
-        $(selectedEvent).val(null).trigger('change');
-        tellAboutGoodDeed.reset();
-        const customCityWrapper = customCity.closest('.hidden-field');
-        $(customCityWrapper).slideUp();
-        formDropzone.removeAllFiles();
-        formParentModal.classList.remove('show');
-        responceModal.classList.add('show')
-    }, 2000);
+    // setTimeout(() => {
+    //     bodyTag.classList.remove('sending');
+    //     $(selectedEvent).val(null).trigger('change');
+    //     tellAboutGoodDeed.reset();
+    //     const customCityWrapper = customCity.closest('.hidden-field');
+    //     $(customCityWrapper).slideUp();
+    //     formDropzone.removeAllFiles();
+    //     formParentModal.classList.remove('show');
+    //     responceModal.classList.add('show')
+    // }, 2000);
 
 });
 
@@ -364,27 +421,61 @@ eventForms.forEach(eventForm => {
             howWasHelp: howWasHelp.value.trim(),
             activityName: activityName.value.trim(),
             eventId,
-            userId,
             files
         };
 
 
         const formHasError = eventForm.querySelector('.err');
         if (formHasError) return;
+
+        const formData = new FormData();
+        formData.append('selectedCity', data.selectedCity);
+        formData.append('howWasHelp', data.howWasHelp);
+        formData.append('activityName', data.activityName);
+        formData.append('eventId', data.eventId);
+        formData.append('userId', userId);
+        data.files.forEach(file => {
+            console.log(file);
+
+            formData.append('files[]', file, file.name);
+        });
+
         bodyTag.classList.add('sending');
 
-        setTimeout(() => {
-            bodyTag.classList.remove('sending');
-            formParentModal.classList.remove('show');
-            eventForm.reset();
-            formDropzone.removeAllFiles();
-            responceModal.classList.add('show');
-        }, 2000)
-        console.log(data);
+        $.ajax({
+            url: 'Обработка форм из модальных окон мероприятий',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+
+                bodyTag.classList.remove('sending');
+                formParentModal.classList.remove('show');
+                eventForm.reset();
+                formDropzone.removeAllFiles();
+                responceModal.classList.add('show');
+
+            },
+            error: function (xhr, status, error) {
+                // Обработка ошибки
+                console.log(xhr, status, error);
+            }
+        });
+
+        // setTimeout(() => {
+        //     bodyTag.classList.remove('sending');
+        //     formParentModal.classList.remove('show');
+        //     eventForm.reset();
+        //     formDropzone.removeAllFiles();
+        //     responceModal.classList.add('show');
+        // }, 2000)
+
     })
 });
 
-
+// Подача заявки на мероприятие
 document.addEventListener('click', (e) => {
     const eventBtn = e.target.closest('.set-request-btn');
 
@@ -394,16 +485,36 @@ document.addEventListener('click', (e) => {
         eventId: eventBtn.getAttribute('data-activity-id'),
         userId
     }
+    const formData = new FormData();
+    formData.append('eventId', data.eventId);
+    formData.append('userId', userId);
 
     bodyTag.classList.add('sending');
 
-    setTimeout(() => {
-        bodyTag.classList.remove('sending');
-        parentModal.classList.remove('show');
-        responceModal.classList.add('show');
-    }, 2000)
-    console.log(data);
-})
+    $.ajax({
+        url: ' Подача заявки на мероприятие',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log(response);
+            bodyTag.classList.remove('sending');
+            parentModal.classList.remove('show');
+            responceModal.classList.add('show');
+
+        },
+        error: function (xhr, status, error) {
+            // Обработка ошибки
+            console.log(xhr, status, error);
+        }
+    });
+    // setTimeout(() => {
+    //     bodyTag.classList.remove('sending');
+    //     parentModal.classList.remove('show');
+    //     responceModal.classList.add('show');
+    // }, 2000)
+});
 
 
 const albumModal = document.querySelector('.album-modal');
