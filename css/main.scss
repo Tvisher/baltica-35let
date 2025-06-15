@@ -3255,6 +3255,7 @@ body.sending {
 .works-header {
   background-image: none;
   min-height: inherit !important;
+  background: linear-gradient(92deg, #1A4BB8 0%, #00225B 100%);
 
   &::before {
     display: none;
@@ -3314,6 +3315,7 @@ body.sending {
   display: flex;
   gap: pxToRem(24);
   margin-bottom: pxToRem(72);
+  flex-wrap: wrap;
 }
 
 .work-item {
@@ -3324,7 +3326,6 @@ body.sending {
   padding-top: 26.8%;
   border-radius: pxToRem(16);
   overflow: hidden;
-  border-radius: 16px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -3340,6 +3341,20 @@ body.sending {
     flex-direction: column;
     justify-content: flex-end;
     padding: pxToRem(24);
+
+    @media (max-width: 576px) {
+      padding: pxToRem(15);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    width: calc(50% - pxToRem(24));
+    padding-top: 41.8%;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    padding-top: 78vw;
   }
 }
 
@@ -3347,6 +3362,9 @@ body.sending {
   padding-left: pxToRem(16);
   border-left: 2px solid #F1BC7C;
   color: #FFF;
+  display: flex;
+  justify-content: space-between;
+
 }
 
 .work-item__name {
@@ -3378,6 +3396,35 @@ body.sending {
     background-size: contain;
     background-position: center;
   }
+}
+
+.work-item__like {
+  width: pxToRem(60);
+  height: pxToRem(50);
+  border-radius: pxToRem(10);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='60' height='50' viewBox='0 0 60 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='1' width='58' height='48' rx='9' fill='white' fill-opacity='0.01'/%3e%3crect x='1' y='1' width='58' height='48' rx='9' stroke='url(%23paint0_linear_574_60131)' stroke-width='2'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_574_60131' x1='0' y1='25' x2='60' y2='25' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23CC985D'/%3e%3cstop offset='0.2' stop-color='%23EED2A3'/%3e%3cstop offset='0.4' stop-color='%23FDE1B9'/%3e%3cstop offset='0.6' stop-color='%23C68E54'/%3e%3cstop offset='0.8' stop-color='%23DAA155'/%3e%3cstop offset='1' stop-color='%23BE8239'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding: 2px;
+  backdrop-filter: blur(3px);
+  position: relative;
+  z-index: 3;
+
+  &.active {
+    .work-item__like-inner {
+      background-color: #0034AC;
+    }
+  }
+}
+
+.work-item__like-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: pxToRem(10);
 }
 
 @import "media.scss";

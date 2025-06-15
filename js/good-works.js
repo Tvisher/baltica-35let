@@ -1,6 +1,7 @@
 const userId = document.querySelector('body').getAttribute('data-user-id');
 const responceModal = document.querySelector('[data-responce-modal]');
-
+const responceModalTitle = responceModal.querySelector('.auth-modal__head span');
+const responceModalDescr = responceModal.querySelector('.message-form__text');
 const pauseAllVideoInPage = () => {
     const videos = document.querySelectorAll('video');
     videos.forEach(video => video.pause());
@@ -258,7 +259,7 @@ suggestForm.addEventListener('submit', (e) => {
 
     bodyTag.classList.add('sending');
     $.ajax({
-        url: 'Предложить мероприятие',
+        url: '/ajax/proposeEvent.php',
         type: 'POST',
         data: formData,
         processData: false,
@@ -341,20 +342,24 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
     bodyTag.classList.add('sending');
 
     $.ajax({
-        url: 'Рассказать о добром деле',
+        url: '/ajax/addreport.php',
         type: 'POST',
         data: formData,
         processData: false,
+        // contentType: 'multipart/form-data',
         contentType: false,
         success: function (response) {
             console.log(response);
-            bodyTag.classList.remove('sending');
             $(selectedEvent).val(null).trigger('change');
             tellAboutGoodDeed.reset();
             const customCityWrapper = customCity.closest('.hidden-field');
             $(customCityWrapper).slideUp();
             formDropzone.removeAllFiles();
+            const responseMessage = JSON.parse(response);
+            responceModalTitle.innerHTML = responseMessage.title;
+            responceModalDescr.innerHTML = responseMessage.description;
             formParentModal.classList.remove('show');
+            bodyTag.classList.remove('sending');
             responceModal.classList.add('show')
 
         },
@@ -443,18 +448,21 @@ eventForms.forEach(eventForm => {
         bodyTag.classList.add('sending');
 
         $.ajax({
-            url: 'Обработка форм из модальных окон мероприятий',
+            url: '/ajax/addreport.php',
             type: 'POST',
             data: formData,
             processData: false,
             contentType: false,
             success: function (response) {
                 console.log(response);
-
-                bodyTag.classList.remove('sending');
-                formParentModal.classList.remove('show');
                 eventForm.reset();
                 formDropzone.removeAllFiles();
+                bodyTag.classList.remove('sending');
+
+                formParentModal.classList.remove('show');
+                const responseMessage = JSON.parse(response);
+                responceModalTitle.innerHTML = responseMessage.title;
+                responceModalDescr.innerHTML = responseMessage.description;
                 responceModal.classList.add('show');
 
             },
@@ -492,7 +500,7 @@ document.addEventListener('click', (e) => {
     bodyTag.classList.add('sending');
 
     $.ajax({
-        url: ' Подача заявки на мероприятие',
+        url: ' /ajax/appevent.php',
         type: 'POST',
         data: formData,
         processData: false,
@@ -501,6 +509,9 @@ document.addEventListener('click', (e) => {
             console.log(response);
             bodyTag.classList.remove('sending');
             parentModal.classList.remove('show');
+            const responseMessage = JSON.parse(response);
+            responceModalTitle.innerHTML = responseMessage.title;
+            responceModalDescr.innerHTML = responseMessage.description;
             responceModal.classList.add('show');
 
         },

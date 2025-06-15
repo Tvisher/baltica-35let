@@ -11,8 +11,8 @@
     <link rel="preload" href="./fonts/Verdana-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="./fonts/Verdana-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./css/select2.min.css" />
-    <link rel="stylesheet" href="./css/dropzone.min.css" />
+    <link rel="stylesheet" href="./css/fancybox.css" />
+
     <link rel="stylesheet" href="./css/main.min.css?v=1" />
 </head>
 <!-- not-auth тегу body если юзер не авторизован -->
@@ -81,36 +81,123 @@
                 </div>
 
                 <div class="works-list">
-                    <div class="work-item" style="background-image: url(./img/album-image.jpg);">
+                    <div class="work-item" data-src="./img/album-image.jpg" data-fancybox="work-id-1"
+                        style="background-image: url(./img/album-image.jpg);">
                         <div class="work-item__content">
                             <div class="work-item__wrapper">
                                 <div class="work-item__data">
                                     <div class="work-item__name">Фамилия Имя</div>
                                     <div class="work-item__location">Санкт-Петербург</div>
                                 </div>
-                                <div class="work-item__like" data-work-id="1"></div>
+                                <div class="work-item__like" data-work-id="1">
+                                    <div class="work-item__like-inner"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="22" viewBox="0 0 24 22" fill="none">
+                                            <path
+                                                d="M6.17647 9.74737V19.7444C6.17647 20.0758 6.04013 20.3936 5.79743 20.628C5.55474 20.8623 5.22557 20.994 4.88235 20.994H2.29412C1.9509 20.994 1.62173 20.8623 1.37904 20.628C1.13634 20.3936 1 20.0758 1 19.7444V10.997C1 10.6656 1.13634 10.3477 1.37904 10.1134C1.62173 9.87902 1.9509 9.74737 2.29412 9.74737H6.17647ZM6.17647 9.74737C7.54936 9.74737 8.86601 9.22074 9.83679 8.28334C10.8076 7.34594 11.3529 6.07456 11.3529 4.74887V3.49925C11.3529 2.83641 11.6256 2.20071 12.111 1.73201C12.5964 1.26331 13.2547 1 13.9412 1C14.6276 1 15.2859 1.26331 15.7713 1.73201C16.2567 2.20071 16.5294 2.83641 16.5294 3.49925V9.74737H20.4118C21.0982 9.74737 21.7565 10.0107 22.2419 10.4794C22.7273 10.9481 23 11.5838 23 12.2466L21.7059 18.4947C21.5198 19.2613 21.1667 19.9196 20.6999 20.3704C20.2331 20.8211 19.6778 21.04 19.1176 20.994H10.0588C9.02916 20.994 8.04167 20.599 7.31359 19.896C6.5855 19.1929 6.17647 18.2394 6.17647 17.2451"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="work-item" style="background-image: url(./img/album-image.jpg);">
+                    <div class="work-item" data-src="./img/album-image.jpg" data-fancybox="work-id-2"
+                        style="background-image: url(./img/album-image.jpg);">
                         <div class="work-item__content">
                             <div class="work-item__wrapper">
                                 <div class="work-item__data">
                                     <div class="work-item__name">Фамилия Имя</div>
                                     <div class="work-item__location">Санкт-Петербург</div>
                                 </div>
-                                <div class="work-item__like" data-work-id="2"></div>
+                                <div class="work-item__like" data-work-id="2">
+                                    <div class="work-item__like-inner"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="22" viewBox="0 0 24 22" fill="none">
+                                            <path
+                                                d="M6.17647 9.74737V19.7444C6.17647 20.0758 6.04013 20.3936 5.79743 20.628C5.55474 20.8623 5.22557 20.994 4.88235 20.994H2.29412C1.9509 20.994 1.62173 20.8623 1.37904 20.628C1.13634 20.3936 1 20.0758 1 19.7444V10.997C1 10.6656 1.13634 10.3477 1.37904 10.1134C1.62173 9.87902 1.9509 9.74737 2.29412 9.74737H6.17647ZM6.17647 9.74737C7.54936 9.74737 8.86601 9.22074 9.83679 8.28334C10.8076 7.34594 11.3529 6.07456 11.3529 4.74887V3.49925C11.3529 2.83641 11.6256 2.20071 12.111 1.73201C12.5964 1.26331 13.2547 1 13.9412 1C14.6276 1 15.2859 1.26331 15.7713 1.73201C16.2567 2.20071 16.5294 2.83641 16.5294 3.49925V9.74737H20.4118C21.0982 9.74737 21.7565 10.0107 22.2419 10.4794C22.7273 10.9481 23 11.5838 23 12.2466L21.7059 18.4947C21.5198 19.2613 21.1667 19.9196 20.6999 20.3704C20.2331 20.8211 19.6778 21.04 19.1176 20.994H10.0588C9.02916 20.994 8.04167 20.599 7.31359 19.896C6.5855 19.1929 6.17647 18.2394 6.17647 17.2451"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="work-item" style="background-image: url(./img/album-image.jpg);">
+                    <div class="work-item" data-src="./img/album-image.jpg" data-fancybox="work-id-3"
+                        style="background-image: url(./img/album-image.jpg);">
                         <div class="work-item__content">
                             <div class="work-item__wrapper">
                                 <div class="work-item__data">
                                     <div class="work-item__name">Фамилия Имя</div>
                                     <div class="work-item__location">Санкт-Петербург</div>
                                 </div>
-                                <div class="work-item__like" data-work-id="3"></div>
+                                <div class="work-item__like active" data-work-id="3">
+                                    <div class="work-item__like-inner"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="22" viewBox="0 0 24 22" fill="none">
+                                            <path
+                                                d="M6.17647 9.74737V19.7444C6.17647 20.0758 6.04013 20.3936 5.79743 20.628C5.55474 20.8623 5.22557 20.994 4.88235 20.994H2.29412C1.9509 20.994 1.62173 20.8623 1.37904 20.628C1.13634 20.3936 1 20.0758 1 19.7444V10.997C1 10.6656 1.13634 10.3477 1.37904 10.1134C1.62173 9.87902 1.9509 9.74737 2.29412 9.74737H6.17647ZM6.17647 9.74737C7.54936 9.74737 8.86601 9.22074 9.83679 8.28334C10.8076 7.34594 11.3529 6.07456 11.3529 4.74887V3.49925C11.3529 2.83641 11.6256 2.20071 12.111 1.73201C12.5964 1.26331 13.2547 1 13.9412 1C14.6276 1 15.2859 1.26331 15.7713 1.73201C16.2567 2.20071 16.5294 2.83641 16.5294 3.49925V9.74737H20.4118C21.0982 9.74737 21.7565 10.0107 22.2419 10.4794C22.7273 10.9481 23 11.5838 23 12.2466L21.7059 18.4947C21.5198 19.2613 21.1667 19.9196 20.6999 20.3704C20.2331 20.8211 19.6778 21.04 19.1176 20.994H10.0588C9.02916 20.994 8.04167 20.599 7.31359 19.896C6.5855 19.1929 6.17647 18.2394 6.17647 17.2451"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-item" data-src="./img/album-image.jpg" data-fancybox="work-id-1"
+                        style="background-image: url(./img/album-image.jpg);">
+                        <div class="work-item__content">
+                            <div class="work-item__wrapper">
+                                <div class="work-item__data">
+                                    <div class="work-item__name">Фамилия Имя</div>
+                                    <div class="work-item__location">Санкт-Петербург</div>
+                                </div>
+                                <div class="work-item__like" data-work-id="1">
+                                    <div class="work-item__like-inner"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="22" viewBox="0 0 24 22" fill="none">
+                                            <path
+                                                d="M6.17647 9.74737V19.7444C6.17647 20.0758 6.04013 20.3936 5.79743 20.628C5.55474 20.8623 5.22557 20.994 4.88235 20.994H2.29412C1.9509 20.994 1.62173 20.8623 1.37904 20.628C1.13634 20.3936 1 20.0758 1 19.7444V10.997C1 10.6656 1.13634 10.3477 1.37904 10.1134C1.62173 9.87902 1.9509 9.74737 2.29412 9.74737H6.17647ZM6.17647 9.74737C7.54936 9.74737 8.86601 9.22074 9.83679 8.28334C10.8076 7.34594 11.3529 6.07456 11.3529 4.74887V3.49925C11.3529 2.83641 11.6256 2.20071 12.111 1.73201C12.5964 1.26331 13.2547 1 13.9412 1C14.6276 1 15.2859 1.26331 15.7713 1.73201C16.2567 2.20071 16.5294 2.83641 16.5294 3.49925V9.74737H20.4118C21.0982 9.74737 21.7565 10.0107 22.2419 10.4794C22.7273 10.9481 23 11.5838 23 12.2466L21.7059 18.4947C21.5198 19.2613 21.1667 19.9196 20.6999 20.3704C20.2331 20.8211 19.6778 21.04 19.1176 20.994H10.0588C9.02916 20.994 8.04167 20.599 7.31359 19.896C6.5855 19.1929 6.17647 18.2394 6.17647 17.2451"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-item" data-src="./img/album-image.jpg" data-fancybox="work-id-2"
+                        style="background-image: url(./img/album-image.jpg);">
+                        <div class="work-item__content">
+                            <div class="work-item__wrapper">
+                                <div class="work-item__data">
+                                    <div class="work-item__name">Фамилия Имя</div>
+                                    <div class="work-item__location">Санкт-Петербург</div>
+                                </div>
+                                <div class="work-item__like" data-work-id="2">
+                                    <div class="work-item__like-inner"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="22" viewBox="0 0 24 22" fill="none">
+                                            <path
+                                                d="M6.17647 9.74737V19.7444C6.17647 20.0758 6.04013 20.3936 5.79743 20.628C5.55474 20.8623 5.22557 20.994 4.88235 20.994H2.29412C1.9509 20.994 1.62173 20.8623 1.37904 20.628C1.13634 20.3936 1 20.0758 1 19.7444V10.997C1 10.6656 1.13634 10.3477 1.37904 10.1134C1.62173 9.87902 1.9509 9.74737 2.29412 9.74737H6.17647ZM6.17647 9.74737C7.54936 9.74737 8.86601 9.22074 9.83679 8.28334C10.8076 7.34594 11.3529 6.07456 11.3529 4.74887V3.49925C11.3529 2.83641 11.6256 2.20071 12.111 1.73201C12.5964 1.26331 13.2547 1 13.9412 1C14.6276 1 15.2859 1.26331 15.7713 1.73201C16.2567 2.20071 16.5294 2.83641 16.5294 3.49925V9.74737H20.4118C21.0982 9.74737 21.7565 10.0107 22.2419 10.4794C22.7273 10.9481 23 11.5838 23 12.2466L21.7059 18.4947C21.5198 19.2613 21.1667 19.9196 20.6999 20.3704C20.2331 20.8211 19.6778 21.04 19.1176 20.994H10.0588C9.02916 20.994 8.04167 20.599 7.31359 19.896C6.5855 19.1929 6.17647 18.2394 6.17647 17.2451"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-item" data-src="./img/album-image.jpg" data-fancybox="work-id-3"
+                        style="background-image: url(./img/album-image.jpg);">
+                        <div class="work-item__content">
+                            <div class="work-item__wrapper">
+                                <div class="work-item__data">
+                                    <div class="work-item__name">Фамилия Имя</div>
+                                    <div class="work-item__location">Санкт-Петербург</div>
+                                </div>
+                                <div class="work-item__like active" data-work-id="3">
+                                    <div class="work-item__like-inner"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="22" viewBox="0 0 24 22" fill="none">
+                                            <path
+                                                d="M6.17647 9.74737V19.7444C6.17647 20.0758 6.04013 20.3936 5.79743 20.628C5.55474 20.8623 5.22557 20.994 4.88235 20.994H2.29412C1.9509 20.994 1.62173 20.8623 1.37904 20.628C1.13634 20.3936 1 20.0758 1 19.7444V10.997C1 10.6656 1.13634 10.3477 1.37904 10.1134C1.62173 9.87902 1.9509 9.74737 2.29412 9.74737H6.17647ZM6.17647 9.74737C7.54936 9.74737 8.86601 9.22074 9.83679 8.28334C10.8076 7.34594 11.3529 6.07456 11.3529 4.74887V3.49925C11.3529 2.83641 11.6256 2.20071 12.111 1.73201C12.5964 1.26331 13.2547 1 13.9412 1C14.6276 1 15.2859 1.26331 15.7713 1.73201C16.2567 2.20071 16.5294 2.83641 16.5294 3.49925V9.74737H20.4118C21.0982 9.74737 21.7565 10.0107 22.2419 10.4794C22.7273 10.9481 23 11.5838 23 12.2466L21.7059 18.4947C21.5198 19.2613 21.1667 19.9196 20.6999 20.3704C20.2331 20.8211 19.6778 21.04 19.1176 20.994H10.0588C9.02916 20.994 8.04167 20.599 7.31359 19.896C6.5855 19.1929 6.17647 18.2394 6.17647 17.2451"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -510,7 +597,9 @@
     </div>
 
     <script src="./js/jquery.min.js"></script>
+    <script src="./js/fancybox.umd.js"></script>
     <script src="./js/app.js"></script>
+    <script src="./js/works.js"></script>
 
 </body>
 
