@@ -129,7 +129,7 @@
                                     <div class="work-item__name">Фамилия Имя</div>
                                     <div class="work-item__location">Санкт-Петербург</div>
                                 </div>
-                                <div class="work-item__like active" data-work-id="3">
+                                <div class="work-item__like" data-work-id="3">
                                     <div class="work-item__like-inner"><svg xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="22" viewBox="0 0 24 22" fill="none">
                                             <path
@@ -601,8 +601,70 @@
     <script src="./js/jquery.min.js"></script>
     <script src="./js/fancybox.umd.js"></script>
     <script src="./js/app.js"></script>
-    <script src="./js/works.js"></script>
+    <script>
+        const userId = document.querySelector('body').getAttribute('data-user-id');
+        Fancybox.bind("[data-fancybox]", {});
 
+        //Отработка аякса лайков
+
+        document.querySelectorAll('.work-item__like').forEach(likeBtn => {
+            likeBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                // если лайк уже есть, ничего не делаем
+                if (likeBtn.classList.contains('active')) return;
+                const wokrId = likeBtn.getAttribute('data-work-id');
+                const formData = new FormData();
+                formData.append('wokrId', wokrId);
+                formData.append('userId', userId);
+
+                $.ajax({
+                    url: '/ajax/like.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response);
+                        likeBtn.classList.add('active');
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr, status, error);
+                    }
+                });
+            });
+        });
+
+
+        // Аякс подгрузка по кнопке "Показать еще"
+        let page = 1;
+        const $spinner = $('.works-spinner');
+        const $showMoreBtn = $('.show-more-btn');
+        $showMoreBtn.on('click', function () {
+            $spinner.show();
+            page++;
+
+            $.ajax({
+                url: '/ajax/works?page=' + page,
+                method: 'GET',
+                dataType: 'html',
+                success: function (response) {
+                    const $items = $(response).filter('.work-item');
+                    if ($items.length) {
+                        $('.works-list').append($items);
+                    } else {
+                        $showMoreBtn.hide(); // больше нечего загружать
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Ошибка при загрузке:', error);
+                },
+                complete: function () {
+                    $spinner.hide();
+                }
+            });
+        });
+
+    </script>
 </body>
 
 </html>
