@@ -61,6 +61,10 @@
     .video-section {
         padding: pxToRem(50) 0;
     }
+
+    .works-header {
+        padding-bottom: pxToRem(30);
+    }
 }
 
 @media (max-width: 1440px) {
@@ -768,4 +772,31 @@
         font-size: pxToRem(18);
     }
 
+    .works-header {
+        padding-bottom: pxToRem(20);
+    }
+
+    .works-section {
+        padding: pxToRem(45) 0;
+    }
+
+    .toggle-block__wrapper {
+        padding: pxToRem(16) pxToRem(20);
+    }
+
+    .toggle-block__title {
+        font-size: pxToRem(24);
+    }
+
+    .toggle-block .toggle-block__descr {
+        font-size: pxToRem(16);
+    }
+
+    .toggle-block {
+        margin-bottom: pxToRem(40);
+    }
+
+    .works-list {
+        margin-bottom: pxToRem(50);
+    }
 }

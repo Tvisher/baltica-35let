@@ -3255,7 +3255,7 @@ body.sending {
 .works-header {
   background-image: none;
   min-height: inherit !important;
-  background: linear-gradient(92deg, #1A4BB8 0%, #00225B 100%);
+  background: linear-gradient(92deg, #1A4BB8 0%, #00225B 100%) !important;
 
   &::before {
     display: none;
@@ -3263,7 +3263,7 @@ body.sending {
 }
 
 .works-section {
-  padding-top: 90px;
+  padding: 90px 0;
 }
 
 .toggle-block {
@@ -3291,6 +3291,7 @@ body.sending {
     line-height: 100%;
     font-family: 'Akrobat';
     max-width: pxToRem(1150);
+    margin-bottom: pxToRem(12);
   }
 
   .toggle-block__descr {
@@ -3343,7 +3344,7 @@ body.sending {
     padding: pxToRem(24);
 
     @media (max-width: 576px) {
-      padding: pxToRem(15);
+      padding: pxToRem(16);
     }
   }
 
@@ -3364,6 +3365,7 @@ body.sending {
   color: #FFF;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 
 }
 
@@ -3410,6 +3412,7 @@ body.sending {
   backdrop-filter: blur(3px);
   position: relative;
   z-index: 3;
+  flex-shrink: 0;
 
   &.active {
     .work-item__like-inner {
@@ -3426,5 +3429,20 @@ body.sending {
   height: 100%;
   border-radius: pxToRem(10);
 }
+
+.show-more-btn {
+  max-width: pxToRem(800);
+  margin: pxToRem(20) auto
+}
+
+
+.works-spinner {
+  margin: auto;
+  display: block;
+  border-color: #f1bc7c;
+  border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+
 
 @import "media.scss";
