@@ -611,12 +611,15 @@
             likeBtn.addEventListener('click', e => {
                 e.stopPropagation();
                 // если лайк уже есть, ничего не делаем
-                if (likeBtn.classList.contains('active')) return;
+                if (likeBtn.classList.contains('sending')) return;
+
                 const wokrId = likeBtn.getAttribute('data-work-id');
                 const formData = new FormData();
+                const state = likeBtn.classList.contains('active') ? 'unlike' : 'like';
                 formData.append('wokrId', wokrId);
                 formData.append('userId', userId);
-
+                formData.append('state', state);
+                likeBtn.classList.add('sending');
                 $.ajax({
                     url: '/ajax/like.php',
                     type: 'POST',
@@ -625,7 +628,8 @@
                     contentType: false,
                     success: function (response) {
                         console.log(response);
-                        likeBtn.classList.add('active');
+                        likeBtn.classList.toggle('active');
+                        likeBtn.classList.remove('sending');
                     },
                     error: function (xhr, status, error) {
                         console.log(xhr, status, error);
@@ -637,6 +641,7 @@
 
         // Аякс подгрузка по кнопке "Показать еще"
         let page = 1;
+        const limit = 10;
         const $spinner = $('.works-spinner');
         const $showMoreBtn = $('.show-more-btn');
         $showMoreBtn.on('click', function () {

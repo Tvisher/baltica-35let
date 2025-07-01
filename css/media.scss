@@ -800,3 +800,31 @@
         margin-bottom: pxToRem(50);
     }
 }
+
+@media (max-width: 380px) {
+    .work-item__wrapper {
+        padding-left: pxToRem(10);
+    }
+
+    .work-item__location {
+        font-size: pxToRem(16);
+    }
+
+    .work-item__name {
+        font-size: pxToRem(14);
+    }
+
+    .work-item__like {
+        width: pxToRem(48);
+        height: pxToRem(40);
+    }
+
+    .work-item__like-inner svg {
+        width: pxToRem(19);
+        height: pxToRem(16);
+    }
+
+    .works-list {
+        gap: pxToRem(20);
+    }
+}

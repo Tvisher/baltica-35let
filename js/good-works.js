@@ -581,3 +581,31 @@ document.addEventListener('click', (e) => {
     }
 
 });
+
+
+
+
+function padNumber() {
+    const counterNum = Number(Array.from(document.querySelectorAll('.counter-num')).map(el => el.innerHTML).join('')) + 1;
+    return counterNum.toString().padStart(3, '0');
+}
+
+
+function updateCounter() {
+    const counterItems = document.querySelectorAll('.counter-num');
+    counterItems.forEach(el => {
+        el.classList.add('initAnim')
+    });
+    const newNum = padNumber();
+    setTimeout(() => {
+        counterItems.forEach((el, ind) => {
+            el.innerHTML = newNum[ind];
+        });
+    }, 1000)
+}
+
+setTimeout(() => {
+    updateCounter();
+    setTimeout(() => document.querySelectorAll('.counter-num').forEach(el => el.classList.remove('initAnim')), 200)
+}, 2000)
+
