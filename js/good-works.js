@@ -284,6 +284,30 @@ suggestForm.addEventListener('submit', (e) => {
     // }, 2000)
 })
 
+
+
+function updateCounter() {
+    const counterItems = document.querySelectorAll('.counter-num');
+    counterItems.forEach(el => {
+        el.classList.add('initAnim')
+        el.style.transform = 'translateY(100%)';
+    });
+    const newNum = (Number(Array.from(document.querySelectorAll('.counter-num')).map(el => el.innerHTML).join('')) + 1).toString().padStart(3, '0');
+    setTimeout(() => {
+        counterItems.forEach((el, ind) => {
+            el.innerHTML = newNum[ind];
+        });
+        setTimeout(() => document.querySelectorAll('.counter-num').forEach(el => {
+            el.style.transform = 'translateY(0%)';
+            el.classList.remove('initAnim')
+        }), 100)
+    }, 1200)
+}
+
+
+
+
+
 // Обработка формы  "Рассказать о добром деле"
 const tellAboutGoodDeed = document.querySelector('#tell-about-good-deed');
 tellAboutGoodDeed.addEventListener('submit', (e) => {
@@ -360,8 +384,8 @@ tellAboutGoodDeed.addEventListener('submit', (e) => {
             responceModalDescr.innerHTML = responseMessage.description;
             formParentModal.classList.remove('show');
             bodyTag.classList.remove('sending');
-            responceModal.classList.add('show')
-
+            responceModal.classList.add('show');
+            responceModal.classList.add('showAnim');
         },
         error: function (xhr, status, error) {
             // Обработка ошибки
@@ -580,32 +604,8 @@ document.addEventListener('click', (e) => {
         currentTab && currentTab.classList.add('show');
     }
 
+    if (target.closest('[data-responce-modal] [data-close-modal]')) {
+        updateCounter();
+    }
+
 });
-
-
-
-
-function padNumber() {
-    const counterNum = Number(Array.from(document.querySelectorAll('.counter-num')).map(el => el.innerHTML).join('')) + 1;
-    return counterNum.toString().padStart(3, '0');
-}
-
-
-function updateCounter() {
-    const counterItems = document.querySelectorAll('.counter-num');
-    counterItems.forEach(el => {
-        el.classList.add('initAnim')
-    });
-    const newNum = padNumber();
-    setTimeout(() => {
-        counterItems.forEach((el, ind) => {
-            el.innerHTML = newNum[ind];
-        });
-    }, 1000)
-}
-
-setTimeout(() => {
-    updateCounter();
-    setTimeout(() => document.querySelectorAll('.counter-num').forEach(el => el.classList.remove('initAnim')), 200)
-}, 2000)
-
