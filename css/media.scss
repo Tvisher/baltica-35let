@@ -175,6 +175,14 @@
 }
 
 @media (max-width: 768px) {
+    .header__link {
+        font-size: pxToRem(22);
+    }
+
+    .header__nav {
+        gap: pxToRem(15);
+    }
+
     .modal-section__images {
         flex-wrap: wrap;
     }
@@ -248,8 +256,8 @@
     }
 
     .header__logo {
-        width: pxToRem(100);
-        height: pxToRem(30);
+        width: pxToRem(140);
+        height: pxToRem(60);
     }
 
 
