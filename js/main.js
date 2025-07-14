@@ -107,10 +107,6 @@ const activitiesList = new Swiper('.activities__list', {
         type: "bullets",
         clickable: 1,
     },
-    // freeMode: {
-    //     enabled: !isMobileInit,
-    //     sticky: !isMobileInit,
-    // },
 });
 
 
@@ -137,19 +133,19 @@ const albumSlider = new Swiper('.album-slider', {
             // if (isMobileInit) return;
             const currentSlide = swiper.slides[swiper.activeIndex];
             const activeYear = currentSlide.dataset.year;
-            const timelineNeededSlideIndex = timelineSlider.slides.findIndex(slide => slide.dataset.year == activeYear);
-            const timelineNeededSlide = timelineSlider.slides.find(slide => slide.dataset.year == activeYear);
-            timelineSlider.slides.forEach(slide => slide.classList.remove('active'))
+            const timelineNeededSlideIndex = albumTimelineSlider.slides.findIndex(slide => slide.dataset.year == activeYear);
+            const timelineNeededSlide = albumTimelineSlider.slides.find(slide => slide.dataset.year == activeYear);
+            albumTimelineSlider.slides.forEach(slide => slide.classList.remove('active'))
             timelineNeededSlide.classList.add('active');
 
-            timelineSlider.slideTo(timelineNeededSlideIndex, 200)
+            albumTimelineSlider.slideTo(timelineNeededSlideIndex, 200)
 
         }
     }
 });
 
 
-const timelineSlider = new Swiper('.album-timeline', {
+const albumTimelineSlider = new Swiper('.album-timeline', {
     slidesPerView: 'auto',
     freeMode: {
         enabled: true,
@@ -313,3 +309,116 @@ document.addEventListener('click', (e) => {
 
 Fancybox.bind("[data-fancybox]", {
 });
+
+
+
+const activitiesListVideo = new Swiper('.activities__list_video', {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    pagination: {
+        el: '.swiper-pagination',
+        type: "bullets",
+        clickable: 1,
+    },
+});
+activitiesListVideo.slides.forEach(slide => slide.classList.add('visible'));
+
+
+
+const videoTimelineSlider = new Swiper('.video-timeline', {
+    slidesPerView: 'auto',
+    freeMode: {
+        enabled: true,
+    },
+    resizeObserver: 0,
+    centeredSlides: 1,
+    centeredSlidesBounds: 1,
+    on: {
+        // transitionEnd(swiper) {
+        //     if (swiper.isEnd) {
+        //         swiper.el.classList.add('slider-end')
+        //     } else {
+        //         swiper.el.classList.remove('slider-end')
+        //     }
+
+        //     if (swiper.translate < 0) {
+        //         swiper.el.classList.add('slider-start')
+        //     } else {
+        //         swiper.el.classList.remove('slider-start')
+        //     }
+        // },
+        click(swiper, event) {
+            const target = event.target;
+            const currentSlide = target.closest('.timeline-slide');
+            if (currentSlide) {
+                swiper.slides.forEach(el => el.classList.remove('active'))
+                currentSlide.classList.add('active');
+                const currentYear = currentSlide.dataset.year;
+                const albumSliderCurrentSlideIndex = activitiesListVideo.slides
+                    .filter(slide => slide.classList.contains('visible'))
+                    .findIndex(el => el.dataset.year == currentYear);
+                console.log(albumSliderCurrentSlideIndex);
+                if (albumSliderCurrentSlideIndex >= 0) {
+                    activitiesListVideo.slideTo(albumSliderCurrentSlideIndex, 900)
+                }
+            }
+        }
+    }
+});
+
+const videoSliderFilters = document.querySelectorAll('.filter-btn__input');
+let videoSliderFiltersValues = [];
+
+videoSliderFilters.forEach(filterItem => {
+    filterItem.addEventListener('change', (e) => {
+        const filterItemParam = e.target.name;
+        const index = videoSliderFiltersValues.indexOf(filterItemParam);
+        if (index !== -1) {
+            videoSliderFiltersValues.splice(index, 1);
+        } else {
+            videoSliderFiltersValues.push(filterItemParam);
+        }
+
+
+        const videoSliderSlides = activitiesListVideo.slides;
+        let filteredYears = [];
+        if (videoSliderFiltersValues.length < 1) {
+            videoSliderSlides.forEach(slide => {
+                slide.style.display = 'block';
+                slide.classList.add('visible');
+                filteredYears.push(slide.dataset.year);
+            });
+        } else {
+            videoSliderSlides.forEach(slide => {
+                if (!videoSliderFiltersValues.includes(slide.dataset.filter)) {
+                    slide.style.display = 'none';
+                    slide.classList.remove('visible');
+                } else {
+                    slide.style.display = 'block';
+                    slide.classList.add('visible');
+                    filteredYears.push(slide.dataset.year);
+                }
+
+            });
+        }
+        filteredYears = [...new Set(filteredYears)];
+        // console.log(filteredYears);
+        const videoTimelineSliderSlidesList = videoTimelineSlider.slides;
+        let filteredVideoTimeLineSlides = [];
+        videoTimelineSliderSlidesList.map(slide => {
+            if (!filteredYears.includes(slide.dataset.year)) {
+                slide.style.display = 'none'
+            } else {
+                slide.style.display = 'block';
+                filteredVideoTimeLineSlides.push(slide);
+            }
+        });
+
+        const firstYearSlide = videoTimelineSliderSlidesList.findIndex(el => el == filteredVideoTimeLineSlides[0]);
+        console.log(firstYearSlide);
+        // videoTimelineSlider.slideTo(firstYearSlide);
+        activitiesListVideo.update();
+        videoTimelineSlider.update();
+
+    });
+})

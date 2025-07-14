@@ -2,7 +2,8 @@
 
     .period-cards,
     .album-timeline,
-    .poriods-slider {
+    .poriods-slider,
+    .video-timeline {
         margin-left: pxToRem(-20);
         margin-right: pxToRem(-20);
         padding-left: pxToRem(20);
@@ -225,7 +226,8 @@
     .period-cards,
     .album-timeline,
     .poriods-slider,
-    .activities__list {
+    .activities__list,
+    .video-timeline {
         margin-left: pxToRem(-15);
         margin-right: pxToRem(-15);
         padding-left: pxToRem(15);

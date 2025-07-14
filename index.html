@@ -1395,9 +1395,77 @@
     <section class="video-section" id="video-section">
       <div class="container">
         <h2 class="section-title">Видеоархив</h2>
-        <div class="activities__list swiper">
+        <div class="filter-btns">
+          <div class="filter-btn">
+            <input type="checkbox" name="Праздник" class="filter-btn__input">
+            <div class="filter-btn__name">Праздник</div>
+          </div>
+
+          <div class="filter-btn">
+            <input type="checkbox" name="Мероприятия" class="filter-btn__input">
+            <div class="filter-btn__name">Мероприятия</div>
+          </div>
+
+          <div class="filter-btn">
+            <input type="checkbox" name="История" class="filter-btn__input">
+            <div class="filter-btn__name">История</div>
+          </div>
+
+          <div class="filter-btn">
+            <input type="checkbox" name="Значимое событие" class="filter-btn__input">
+            <div class="filter-btn__name">Значимое событие</div>
+          </div>
+
+          <div class="filter-btn">
+            <input type="checkbox" name="Открытие" class="filter-btn__input">
+            <div class="filter-btn__name">Открытие</div>
+          </div>
+
+          <div class="filter-btn">
+            <input type="checkbox" name="Пресс-конференция" class="filter-btn__input">
+            <div class="filter-btn__name">Пресс-конференция</div>
+          </div>
+
+          <div class="filter-btn">
+            <input type="checkbox" name="Экскурсия" class="filter-btn__input">
+            <div class="filter-btn__name">Экскурсия</div>
+          </div>
+        </div>
+
+        <div class="album-timeline__wrapper">
+          <div class="video-timeline swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide timeline-slide active" data-year="1990">
+                1990
+              </div>
+              <div class="swiper-slide timeline-slide" data-year="1991">
+                1991
+              </div>
+              <div class="swiper-slide timeline-slide" data-year="1992">
+                1992
+              </div>
+              <div class="swiper-slide timeline-slide" data-year="1993">
+                1993
+              </div>
+              <div class="swiper-slide timeline-slide" data-year="1994">
+                1994
+              </div>
+              <div class="swiper-slide timeline-slide" data-year="1995">
+                1995
+              </div>
+              <div class="swiper-slide timeline-slide" data-year="1996">
+                1996
+              </div>
+              <div class="swiper-slide timeline-slide" data-year="1997">
+                1997
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="activities__list_video swiper">
           <div class="swiper-wrapper">
-            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+            <div class="activities-item swiper-slide" data-filter="Экскурсия" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1990">
               <div class="activities-item__wrapper">
                 <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
                 <div class="activities-item__descr">
@@ -1407,7 +1475,8 @@
               </div>
             </div>
 
-            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+            <div class="activities-item swiper-slide" data-filter="Экскурсия" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1991">
               <div class="activities-item__wrapper">
                 <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
                 <div class="activities-item__descr">
@@ -1417,7 +1486,8 @@
               </div>
             </div>
 
-            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+            <div class="activities-item swiper-slide" data-filter="Открытие" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1992">
               <div class="activities-item__wrapper">
                 <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
                 <div class="activities-item__descr">
@@ -1427,7 +1497,8 @@
               </div>
             </div>
 
-            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+            <div class="activities-item swiper-slide" data-filter="Пресс-конференция" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1993">
               <div class="activities-item__wrapper">
                 <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
                 <div class="activities-item__descr">
@@ -1436,7 +1507,51 @@
                 </div>
               </div>
             </div>
-            <div class="activities-item swiper-slide" data-fancybox="video-gallery" data-src="./files/video-ex.mp4">
+            <div class="activities-item swiper-slide" data-filter="Значимое событие" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1994">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+
+            <div class="activities-item swiper-slide" data-filter="История" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1995">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+            <div class="activities-item swiper-slide" data-filter="Праздник" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1996">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+
+            <div class="activities-item swiper-slide" data-filter="Праздник" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1996">
+              <div class="activities-item__wrapper">
+                <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
+                <div class="activities-item__descr">
+                  Короткий текст, объясняющий суть проводимой акции. Пару
+                  предложений.
+                </div>
+              </div>
+            </div>
+
+            <div class="activities-item swiper-slide" data-filter="Мероприятия" data-fancybox="video-gallery"
+              data-src="./files/video-ex.mp4" data-year="1997">
               <div class="activities-item__wrapper">
                 <div class="video-poster" style="background-image: url(./img/card-image-2.jpg);"></div>
                 <div class="activities-item__descr">
@@ -1446,7 +1561,7 @@
               </div>
             </div>
           </div>
-          <div class="swiper-pagination _sliders-pagination"></div>
+          <!-- <div class="swiper-pagination _sliders-pagination"></div> -->
         </div>
       </div>
     </section>

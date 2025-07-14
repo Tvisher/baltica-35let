@@ -856,7 +856,8 @@ body {
   }
 }
 
-.activities__list {
+.activities__list,
+.activities__list_video {
   padding-bottom: pxToRem(20);
   margin-left: pxToRem(-20);
   margin-right: pxToRem(-20);
@@ -958,7 +959,8 @@ body {
   }
 }
 
-.album-timeline {
+.album-timeline,
+.video-timeline {
   margin-bottom: pxToRem(35);
   padding-bottom: pxToRem(35);
   position: relative;
@@ -3209,6 +3211,13 @@ body.sending {
 
 .video-section {
   padding: pxToRem(100) 0px pxToRem(120);
+
+  .album-timeline::before,
+  .video-timeline::before,
+  .album-timeline.slider-start::after,
+  .video-timeline.slider-start::after {
+    display: none;
+  }
 }
 
 .video-section {
@@ -3490,6 +3499,78 @@ body.sending {
   border-bottom-color: rgba(0, 0, 0, 0);
 }
 
+
+
+.filter-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: pxToRem(12);
+  margin-bottom: pxToRem(48);
+}
+
+.filter-btn {
+  position: relative;
+
+}
+
+.filter-btn__name {
+  border-radius: pxToRem(40);
+  background: #EBEDF2;
+  padding: pxToRem(6) pxToRem(14);
+  color: #002D74;
+  font-size: pxToRem(18);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  text-transform: uppercase;
+  border: pxToRem(2) solid #EBEDF2;
+
+
+  &::after {
+    position: absolute;
+    right: pxToRem(8);
+    top: 50%;
+    transform: translateY(-50%);
+    width: pxToRem(20);
+    height: pxToRem(20);
+    background: #A1B1C8;
+    content: '';
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M9 1L1 9M1 1L9 9' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e ");
+    background-repeat: no-repeat;
+    background-size: pxToRem(8);
+    background-position: center;
+    display: none;
+
+  }
+
+}
+
+.filter-btn__input {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+
+  &:checked+.filter-btn__name {
+    background-color: #fff;
+    border-color: #BE8239;
+    padding-right: pxToRem(36);
+
+    &::after {
+      display: block;
+    }
+  }
+}
+
+.video-timeline {
+  .timeline-slide {
+    width: pxToRem(76);
+  }
+}
 
 
 @import "media.scss";
