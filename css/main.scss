@@ -3573,4 +3573,8 @@ body.sending {
 }
 
 
+.video-section__content-wrapper {
+  transition: opacity .4s ease-in-out
+}
+
 @import "media.scss";

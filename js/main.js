@@ -366,59 +366,66 @@ const videoTimelineSlider = new Swiper('.video-timeline', {
     }
 });
 
+
+const videoSectionContentWrapper = document.querySelector('.video-section__content-wrapper');
+
 const videoSliderFilters = document.querySelectorAll('.filter-btn__input');
 let videoSliderFiltersValues = [];
-
 videoSliderFilters.forEach(filterItem => {
     filterItem.addEventListener('change', (e) => {
-        const filterItemParam = e.target.name;
-        const index = videoSliderFiltersValues.indexOf(filterItemParam);
-        if (index !== -1) {
-            videoSliderFiltersValues.splice(index, 1);
-        } else {
-            videoSliderFiltersValues.push(filterItemParam);
-        }
-
-
-        const videoSliderSlides = activitiesListVideo.slides;
-        let filteredYears = [];
-        if (videoSliderFiltersValues.length < 1) {
-            videoSliderSlides.forEach(slide => {
-                slide.style.display = 'block';
-                slide.classList.add('visible');
-                filteredYears.push(slide.dataset.year);
-            });
-        } else {
-            videoSliderSlides.forEach(slide => {
-                if (!videoSliderFiltersValues.includes(slide.dataset.filter)) {
-                    slide.style.display = 'none';
-                    slide.classList.remove('visible');
-                } else {
+        videoSectionContentWrapper.style.opacity = 0;
+        setTimeout(() => {
+            const filterItemParam = e.target.name;
+            const index = videoSliderFiltersValues.indexOf(filterItemParam);
+            if (index !== -1) {
+                videoSliderFiltersValues.splice(index, 1);
+            } else {
+                videoSliderFiltersValues.push(filterItemParam);
+            }
+            const videoSliderSlides = activitiesListVideo.slides;
+            let filteredYears = [];
+            if (videoSliderFiltersValues.length < 1) {
+                videoSliderSlides.forEach(slide => {
                     slide.style.display = 'block';
                     slide.classList.add('visible');
                     filteredYears.push(slide.dataset.year);
-                }
-
-            });
-        }
-        filteredYears = [...new Set(filteredYears)];
-        // console.log(filteredYears);
-        const videoTimelineSliderSlidesList = videoTimelineSlider.slides;
-        let filteredVideoTimeLineSlides = [];
-        videoTimelineSliderSlidesList.map(slide => {
-            if (!filteredYears.includes(slide.dataset.year)) {
-                slide.style.display = 'none'
+                });
             } else {
-                slide.style.display = 'block';
-                filteredVideoTimeLineSlides.push(slide);
+                videoSliderSlides.forEach(slide => {
+                    if (!videoSliderFiltersValues.includes(slide.dataset.filter)) {
+                        slide.style.display = 'none';
+                        slide.classList.remove('visible');
+                    } else {
+                        slide.style.display = 'block';
+                        slide.classList.add('visible');
+                        filteredYears.push(slide.dataset.year);
+                    }
+
+                });
             }
-        });
+            filteredYears = [...new Set(filteredYears)];
+            // console.log(filteredYears);
+            const videoTimelineSliderSlidesList = videoTimelineSlider.slides;
+            let filteredVideoTimeLineSlides = [];
+            videoTimelineSliderSlidesList.forEach(slide => {
+                slide.classList.remove('active')
+                if (!filteredYears.includes(slide.dataset.year)) {
+                    slide.style.display = 'none'
+                } else {
+                    slide.style.display = 'block';
+                    filteredVideoTimeLineSlides.push(slide);
+                }
+            });
 
-        const firstYearSlide = videoTimelineSliderSlidesList.findIndex(el => el == filteredVideoTimeLineSlides[0]);
-        console.log(firstYearSlide);
-        // videoTimelineSlider.slideTo(firstYearSlide);
-        activitiesListVideo.update();
-        videoTimelineSlider.update();
-
+            const firstYearSlide = videoTimelineSliderSlidesList.find(el => el == filteredVideoTimeLineSlides[0]);
+            activitiesListVideo.update();
+            videoTimelineSlider.update();
+            videoTimelineSlider.setTranslate(0)
+            activitiesListVideo.setTranslate(0)
+            firstYearSlide.classList.add('active');
+            setTimeout(() => {
+                videoSectionContentWrapper.style.opacity = 1;
+            }, 400)
+        }, 450);
     });
 })
