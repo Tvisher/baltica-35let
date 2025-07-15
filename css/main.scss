@@ -3210,6 +3210,10 @@ body.sending {
 }
 
 .video-section {
+  background-image: url(../img/video-section-bg.svg);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: right;
   padding: pxToRem(100) 0px pxToRem(120);
 
   .album-timeline::before,
