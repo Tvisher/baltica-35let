@@ -307,8 +307,6 @@ document.addEventListener('click', (e) => {
 
 
 
-Fancybox.bind("[data-fancybox]", {
-});
 
 
 
@@ -429,3 +427,11 @@ videoSliderFilters.forEach(filterItem => {
         }, 450);
     });
 })
+
+
+
+
+Fancybox.bind("[data-fancybox]", {
+});
+
+
